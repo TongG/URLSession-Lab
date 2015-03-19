@@ -68,6 +68,8 @@
     NSURLSession* defaultSession =
         [ NSURLSession sessionWithConfiguration: [ NSURLSessionConfiguration defaultSessionConfiguration ] ];
 
+    [ [ NSURLCache sharedURLCache ] removeAllCachedResponses ];
+
     self.dataTask = [ defaultSession dataTaskWithURL: URL
                                    completionHandler:
         ^( NSData* _Data, NSURLResponse* _Response, NSError* _Error )

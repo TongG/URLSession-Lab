@@ -17,14 +17,14 @@
         <window title="URLSession Lab" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="KnK-eB-sKh">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="282" width="578" height="360"/>
+            <rect key="contentRect" x="335" y="282" width="579" height="360"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="NaR-Xf-4wB">
-                <rect key="frame" x="0.0" y="0.0" width="578" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="579" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="opB-g5-Pba">
-                        <rect key="frame" x="20" y="318" width="498" height="22"/>
+                        <rect key="frame" x="20" y="318" width="499" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="tXY-gN-T3A">
                             <font key="font" metaFont="system"/>
@@ -33,7 +33,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OI6-Ao-SA1">
-                        <rect key="frame" x="526" y="316" width="32" height="25"/>
+                        <rect key="frame" x="527" y="316" width="32" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Go" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WZx-6z-7ZP">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -44,21 +44,21 @@
                         </connections>
                     </button>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xom-jN-3a0">
-                        <rect key="frame" x="20" y="20" width="538" height="290"/>
+                        <rect key="frame" x="20" y="20" width="539" height="290"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" id="oi7-48-xzN">
-                            <rect key="frame" x="1" y="1" width="536" height="288"/>
+                            <rect key="frame" x="1" y="1" width="537" height="288"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="D9a-hQ-118">
-                                    <rect key="frame" x="0.0" y="0.0" width="536" height="288"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="537" height="288"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="536" height="288"/>
-                                    <size key="maxSize" width="543" height="10000000"/>
+                                    <size key="minSize" width="537" height="288"/>
+                                    <size key="maxSize" width="547" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="536" height="288"/>
-                                    <size key="maxSize" width="543" height="10000000"/>
+                                    <size key="minSize" width="537" height="288"/>
+                                    <size key="maxSize" width="547" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,7 +68,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5yG-5G-0Nx">
-                            <rect key="frame" x="521" y="1" width="16" height="288"/>
+                            <rect key="frame" x="522" y="1" width="16" height="288"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
