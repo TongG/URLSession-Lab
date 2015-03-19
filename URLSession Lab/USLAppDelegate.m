@@ -8,8 +8,13 @@
 
 #import "USLAppDelegate.h"
 #import "USLMainWindowController.h"
+#import "MASPreferencesViewController.h"
+#import "MASPreferencesWindowController.h"
+#import "USLCacheTabController.h"
 
 @implementation USLAppDelegate
+
+@synthesize preferencesWindowController;
 
 @synthesize mainWindowController = _mainWindowController;
 
@@ -59,6 +64,19 @@
     [ hotTopics resume ];
     NSLog( @"Count of bytes expected to receive: %lld", hotTopics.countOfBytesExpectedToReceive );
 #endif
+    }
+
+- ( IBAction ) showPreferencesPanel: ( id )_Sender
+    {
+    dispatch_once_t static onceToken;
+    dispatch_once( &onceToken
+                 , ^( void )
+                    {
+                    self.preferencesWindowController =
+                        [ [ [ MASPreferencesWindowController alloc ] initWithViewControllers: @[ [ [ [ USLCacheTabController alloc ] init ] autorelease ] ] ] autorelease ];
+                    } );
+
+    [ self.preferencesWindowController showWindow: self ];
     }
 
 @end

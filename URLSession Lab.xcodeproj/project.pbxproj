@@ -20,6 +20,15 @@
 		83C01E2B1ABAAB4D00CADA46 /* URLSession_LabTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E2A1ABAAB4D00CADA46 /* URLSession_LabTests.m */; };
 		83C01E361ABAF4E300CADA46 /* USLMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */; };
 		83C01E381ABAF57300CADA46 /* USLMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E371ABAF57300CADA46 /* USLMainWindow.xib */; };
+		83C01E421ABB1D4200CADA46 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E3A1ABB1D4200CADA46 /* .gitignore */; };
+		83C01E431ABB1D4200CADA46 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E3B1ABB1D4200CADA46 /* LICENSE.md */; };
+		83C01E441ABB1D4200CADA46 /* MASPreferences.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E3C1ABB1D4200CADA46 /* MASPreferences.podspec */; };
+		83C01E451ABB1D4200CADA46 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E3E1ABB1D4200CADA46 /* MASPreferencesWindow.xib */; };
+		83C01E461ABB1D4200CADA46 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E401ABB1D4200CADA46 /* MASPreferencesWindowController.m */; };
+		83C01E471ABB1D4200CADA46 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E411ABB1D4200CADA46 /* README.md */; };
+		83C01E4A1ABB1E0700CADA46 /* USLPreferencesPanelController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E491ABB1E0700CADA46 /* USLPreferencesPanelController.xib */; };
+		83C01E4C1ABB1E7600CADA46 /* USLCacheTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E4B1ABB1E7600CADA46 /* USLCacheTab.xib */; };
+		83C01E4F1ABB1EEC00CADA46 /* USLCacheTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E4E1ABB1EEC00CADA46 /* USLCacheTabController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +52,8 @@
 		83C01E0C1ABAAB4D00CADA46 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		83C01E0E1ABAAB4D00CADA46 /* URLSession Lab-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "URLSession Lab-Prefix.pch"; sourceTree = "<group>"; };
 		83C01E101ABAAB4D00CADA46 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		83C01E121ABAAB4D00CADA46 /* USLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USLAppDelegate.h; sourceTree = "<group>"; };
-		83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = USLAppDelegate.m; sourceTree = "<group>"; };
+		83C01E121ABAAB4D00CADA46 /* USLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = USLAppDelegate.h; path = "URLSession Lab/USLAppDelegate.h"; sourceTree = "<group>"; };
+		83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = USLAppDelegate.m; path = "URLSession Lab/USLAppDelegate.m"; sourceTree = "<group>"; };
 		83C01E161ABAAB4D00CADA46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/USLMainMenu.xib; sourceTree = "<group>"; };
 		83C01E181ABAAB4D00CADA46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		83C01E1E1ABAAB4D00CADA46 /* URLSession LabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "URLSession LabTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +64,18 @@
 		83C01E341ABAF4E300CADA46 /* USLMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USLMainWindowController.h; sourceTree = "<group>"; };
 		83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USLMainWindowController.m; sourceTree = "<group>"; };
 		83C01E371ABAF57300CADA46 /* USLMainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = USLMainWindow.xib; sourceTree = "<group>"; };
+		83C01E3A1ABB1D4200CADA46 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		83C01E3B1ABB1D4200CADA46 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
+		83C01E3C1ABB1D4200CADA46 /* MASPreferences.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MASPreferences.podspec; sourceTree = "<group>"; };
+		83C01E3D1ABB1D4200CADA46 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
+		83C01E3E1ABB1D4200CADA46 /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
+		83C01E3F1ABB1D4200CADA46 /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
+		83C01E401ABB1D4200CADA46 /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
+		83C01E411ABB1D4200CADA46 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		83C01E491ABB1E0700CADA46 /* USLPreferencesPanelController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = USLPreferencesPanelController.xib; path = "URLSession Lab/USLPreferencesPanelController.xib"; sourceTree = "<group>"; };
+		83C01E4B1ABB1E7600CADA46 /* USLCacheTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = USLCacheTab.xib; path = "URLSession Lab/USLCacheTab.xib"; sourceTree = "<group>"; };
+		83C01E4D1ABB1EEC00CADA46 /* USLCacheTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = USLCacheTabController.h; path = "URLSession Lab/USLCacheTabController.h"; sourceTree = "<group>"; };
+		83C01E4E1ABB1EEC00CADA46 /* USLCacheTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = USLCacheTabController.m; path = "URLSession Lab/USLCacheTabController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +102,9 @@
 		83C01DF41ABAAB4D00CADA46 = {
 			isa = PBXGroup;
 			children = (
+				83C01E121ABAAB4D00CADA46 /* USLAppDelegate.h */,
+				83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */,
+				83C01E151ABAAB4D00CADA46 /* USLMainMenu.xib */,
 				83C01E061ABAAB4D00CADA46 /* URLSession Lab */,
 				83C01E241ABAAB4D00CADA46 /* URLSession LabTests */,
 				83C01DFF1ABAAB4D00CADA46 /* Frameworks */,
@@ -120,13 +144,8 @@
 		83C01E061ABAAB4D00CADA46 /* URLSession Lab */ = {
 			isa = PBXGroup;
 			children = (
-				83C01E121ABAAB4D00CADA46 /* USLAppDelegate.h */,
-				83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */,
-				83C01E341ABAF4E300CADA46 /* USLMainWindowController.h */,
-				83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */,
-				83C01E151ABAAB4D00CADA46 /* USLMainMenu.xib */,
-				83C01E371ABAF57300CADA46 /* USLMainWindow.xib */,
-				83C01E181ABAAB4D00CADA46 /* Images.xcassets */,
+				83C01E511ABB337600CADA46 /* Main Window */,
+				83C01E501ABB335100CADA46 /* Preferences Panel */,
 				83C01E071ABAAB4D00CADA46 /* Supporting Files */,
 			);
 			path = "URLSession Lab";
@@ -135,6 +154,7 @@
 		83C01E071ABAAB4D00CADA46 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83C01E181ABAAB4D00CADA46 /* Images.xcassets */,
 				83C01E081ABAAB4D00CADA46 /* URLSession Lab-Info.plist */,
 				83C01E091ABAAB4D00CADA46 /* InfoPlist.strings */,
 				83C01E0C1ABAAB4D00CADA46 /* main.m */,
@@ -160,6 +180,45 @@
 				83C01E271ABAAB4D00CADA46 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83C01E391ABB1D4200CADA46 /* MASPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E3A1ABB1D4200CADA46 /* .gitignore */,
+				83C01E3B1ABB1D4200CADA46 /* LICENSE.md */,
+				83C01E3C1ABB1D4200CADA46 /* MASPreferences.podspec */,
+				83C01E3D1ABB1D4200CADA46 /* MASPreferencesViewController.h */,
+				83C01E3E1ABB1D4200CADA46 /* MASPreferencesWindow.xib */,
+				83C01E3F1ABB1D4200CADA46 /* MASPreferencesWindowController.h */,
+				83C01E401ABB1D4200CADA46 /* MASPreferencesWindowController.m */,
+				83C01E411ABB1D4200CADA46 /* README.md */,
+			);
+			name = MASPreferences;
+			path = "URLSession Lab/MASPreferences";
+			sourceTree = "<group>";
+		};
+		83C01E501ABB335100CADA46 /* Preferences Panel */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E4D1ABB1EEC00CADA46 /* USLCacheTabController.h */,
+				83C01E4E1ABB1EEC00CADA46 /* USLCacheTabController.m */,
+				83C01E491ABB1E0700CADA46 /* USLPreferencesPanelController.xib */,
+				83C01E4B1ABB1E7600CADA46 /* USLCacheTab.xib */,
+				83C01E391ABB1D4200CADA46 /* MASPreferences */,
+			);
+			name = "Preferences Panel";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		83C01E511ABB337600CADA46 /* Main Window */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E341ABAF4E300CADA46 /* USLMainWindowController.h */,
+				83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */,
+				83C01E371ABAF57300CADA46 /* USLMainWindow.xib */,
+			);
+			name = "Main Window";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +300,16 @@
 			files = (
 				83C01E0B1ABAAB4D00CADA46 /* InfoPlist.strings in Resources */,
 				83C01E381ABAF57300CADA46 /* USLMainWindow.xib in Resources */,
+				83C01E471ABB1D4200CADA46 /* README.md in Resources */,
 				83C01E191ABAAB4D00CADA46 /* Images.xcassets in Resources */,
+				83C01E4A1ABB1E0700CADA46 /* USLPreferencesPanelController.xib in Resources */,
 				83C01E111ABAAB4D00CADA46 /* Credits.rtf in Resources */,
+				83C01E421ABB1D4200CADA46 /* .gitignore in Resources */,
+				83C01E451ABB1D4200CADA46 /* MASPreferencesWindow.xib in Resources */,
+				83C01E441ABB1D4200CADA46 /* MASPreferences.podspec in Resources */,
 				83C01E171ABAAB4D00CADA46 /* USLMainMenu.xib in Resources */,
+				83C01E431ABB1D4200CADA46 /* LICENSE.md in Resources */,
+				83C01E4C1ABB1E7600CADA46 /* USLCacheTab.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +328,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83C01E461ABB1D4200CADA46 /* MASPreferencesWindowController.m in Sources */,
 				83C01E0D1ABAAB4D00CADA46 /* main.m in Sources */,
+				83C01E4F1ABB1EEC00CADA46 /* USLCacheTabController.m in Sources */,
 				83C01E141ABAAB4D00CADA46 /* USLAppDelegate.m in Sources */,
 				83C01E361ABAF4E300CADA46 /* USLMainWindowController.m in Sources */,
 			);
@@ -309,6 +377,7 @@
 				83C01E161ABAAB4D00CADA46 /* Base */,
 			);
 			name = USLMainMenu.xib;
+			path = "URLSession Lab";
 			sourceTree = "<group>";
 		};
 		83C01E271ABAAB4D00CADA46 /* InfoPlist.strings */ = {

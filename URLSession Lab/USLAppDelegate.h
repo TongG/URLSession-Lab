@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class MASPreferencesWindowController;
 @class USLMainWindowController;
 
 typedef void ( ^USLCompletionHandlerType )();
@@ -26,6 +27,10 @@ typedef void ( ^USLCompletionHandlerType )();
 @property ( copy ) NSURLSession* ephemeralSession;
 
 @property ( retain ) NSMutableDictionary* completionHandlerDictionary;
+
+@property ( retain ) MASPreferencesWindowController* preferencesWindowController;
+
+- ( IBAction ) showPreferencesPanel: ( id )_Sender;
 
 #if 0
 - ( void ) addCompletionHandler: ( USLCompletionHandlerType )_Handler forSession: ( NSString* )_SessionID;
