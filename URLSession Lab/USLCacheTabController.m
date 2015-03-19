@@ -37,4 +37,9 @@
     return @"Cache Management";
     }
 
+- ( IBAction ) clearAllCache: ( id )_Sender
+    {
+    [ [ NSURLCache sharedURLCache ] removeAllCachedResponses ];
+    }
+
 @end

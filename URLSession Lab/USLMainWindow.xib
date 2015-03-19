@@ -40,7 +40,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="goAction:" target="-2" id="N41-sg-zww"/>
+                            <action selector="goAction:" target="-1" id="v0V-Pn-Pxl"/>
                         </connections>
                     </button>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xom-jN-3a0">
@@ -87,6 +87,9 @@
                     <constraint firstItem="opB-g5-Pba" firstAttribute="leading" secondItem="NaR-Xf-4wB" secondAttribute="leading" constant="20" id="eIQ-pE-37A"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="FFM-E7-KkB"/>
+            </connections>
         </window>
     </objects>
 </document>

@@ -68,8 +68,6 @@
     NSURLSession* defaultSession =
         [ NSURLSession sessionWithConfiguration: [ NSURLSessionConfiguration defaultSessionConfiguration ] ];
 
-    [ [ NSURLCache sharedURLCache ] removeAllCachedResponses ];
-
     self.dataTask = [ defaultSession dataTaskWithURL: URL
                                    completionHandler:
         ^( NSData* _Data, NSURLResponse* _Response, NSError* _Error )
@@ -87,7 +85,7 @@
                                        forRequest: currentRequest ];
                 }
             else
-                [ self.window presentError: _Error ];
+                [ self.window performSelectorOnMainThread: @selector( presentError: ) withObject: _Error waitUntilDone: YES ];
             } ];
 
     [ self.dataTask resume ];

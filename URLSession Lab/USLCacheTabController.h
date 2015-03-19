@@ -15,4 +15,6 @@
 @property ( nonatomic, readonly ) NSImage* toolbarItemImage;
 @property ( nonatomic, readonly ) NSString* toolbarItemLabel;
 
+- ( IBAction ) clearAllCache: ( id )_Sender;
+
 @end
