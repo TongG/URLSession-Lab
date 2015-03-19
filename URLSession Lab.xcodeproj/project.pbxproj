@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83C01E011ABAAB4D00CADA46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C01E001ABAAB4D00CADA46 /* Cocoa.framework */; };
+		83C01E0B1ABAAB4D00CADA46 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E091ABAAB4D00CADA46 /* InfoPlist.strings */; };
+		83C01E0D1ABAAB4D00CADA46 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E0C1ABAAB4D00CADA46 /* main.m */; };
+		83C01E111ABAAB4D00CADA46 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E0F1ABAAB4D00CADA46 /* Credits.rtf */; };
+		83C01E141ABAAB4D00CADA46 /* USLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */; };
+		83C01E171ABAAB4D00CADA46 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E151ABAAB4D00CADA46 /* MainMenu.xib */; };
+		83C01E191ABAAB4D00CADA46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E181ABAAB4D00CADA46 /* Images.xcassets */; };
+		83C01E201ABAAB4D00CADA46 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C01E1F1ABAAB4D00CADA46 /* XCTest.framework */; };
+		83C01E211ABAAB4D00CADA46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C01E001ABAAB4D00CADA46 /* Cocoa.framework */; };
+		83C01E291ABAAB4D00CADA46 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E271ABAAB4D00CADA46 /* InfoPlist.strings */; };
+		83C01E2B1ABAAB4D00CADA46 /* URLSession_LabTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E2A1ABAAB4D00CADA46 /* URLSession_LabTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83C01E221ABAAB4D00CADA46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83C01DF51ABAAB4D00CADA46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83C01DFC1ABAAB4D00CADA46;
+			remoteInfo = "URLSession Lab";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		83C01DFD1ABAAB4D00CADA46 /* URLSession Lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "URLSession Lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83C01E001ABAAB4D00CADA46 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		83C01E031ABAAB4D00CADA46 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		83C01E041ABAAB4D00CADA46 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		83C01E051ABAAB4D00CADA46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		83C01E081ABAAB4D00CADA46 /* URLSession Lab-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "URLSession Lab-Info.plist"; sourceTree = "<group>"; };
+		83C01E0A1ABAAB4D00CADA46 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		83C01E0C1ABAAB4D00CADA46 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		83C01E0E1ABAAB4D00CADA46 /* URLSession Lab-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "URLSession Lab-Prefix.pch"; sourceTree = "<group>"; };
+		83C01E101ABAAB4D00CADA46 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		83C01E121ABAAB4D00CADA46 /* USLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USLAppDelegate.h; sourceTree = "<group>"; };
+		83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = USLAppDelegate.m; sourceTree = "<group>"; };
+		83C01E161ABAAB4D00CADA46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		83C01E181ABAAB4D00CADA46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		83C01E1E1ABAAB4D00CADA46 /* URLSession LabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "URLSession LabTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83C01E1F1ABAAB4D00CADA46 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		83C01E261ABAAB4D00CADA46 /* URLSession LabTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "URLSession LabTests-Info.plist"; sourceTree = "<group>"; };
+		83C01E281ABAAB4D00CADA46 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		83C01E2A1ABAAB4D00CADA46 /* URLSession_LabTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLSession_LabTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		83C01DFA1ABAAB4D00CADA46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C01E011ABAAB4D00CADA46 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83C01E1B1ABAAB4D00CADA46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C01E211ABAAB4D00CADA46 /* Cocoa.framework in Frameworks */,
+				83C01E201ABAAB4D00CADA46 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		83C01DF41ABAAB4D00CADA46 = {
+			isa = PBXGroup;
+			children = (
+				83C01E061ABAAB4D00CADA46 /* URLSession Lab */,
+				83C01E241ABAAB4D00CADA46 /* URLSession LabTests */,
+				83C01DFF1ABAAB4D00CADA46 /* Frameworks */,
+				83C01DFE1ABAAB4D00CADA46 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		83C01DFE1ABAAB4D00CADA46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83C01DFD1ABAAB4D00CADA46 /* URLSession Lab.app */,
+				83C01E1E1ABAAB4D00CADA46 /* URLSession LabTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		83C01DFF1ABAAB4D00CADA46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E001ABAAB4D00CADA46 /* Cocoa.framework */,
+				83C01E1F1ABAAB4D00CADA46 /* XCTest.framework */,
+				83C01E021ABAAB4D00CADA46 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		83C01E021ABAAB4D00CADA46 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E031ABAAB4D00CADA46 /* AppKit.framework */,
+				83C01E041ABAAB4D00CADA46 /* CoreData.framework */,
+				83C01E051ABAAB4D00CADA46 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		83C01E061ABAAB4D00CADA46 /* URLSession Lab */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E121ABAAB4D00CADA46 /* USLAppDelegate.h */,
+				83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */,
+				83C01E151ABAAB4D00CADA46 /* MainMenu.xib */,
+				83C01E181ABAAB4D00CADA46 /* Images.xcassets */,
+				83C01E071ABAAB4D00CADA46 /* Supporting Files */,
+			);
+			path = "URLSession Lab";
+			sourceTree = "<group>";
+		};
+		83C01E071ABAAB4D00CADA46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E081ABAAB4D00CADA46 /* URLSession Lab-Info.plist */,
+				83C01E091ABAAB4D00CADA46 /* InfoPlist.strings */,
+				83C01E0C1ABAAB4D00CADA46 /* main.m */,
+				83C01E0E1ABAAB4D00CADA46 /* URLSession Lab-Prefix.pch */,
+				83C01E0F1ABAAB4D00CADA46 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83C01E241ABAAB4D00CADA46 /* URLSession LabTests */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E2A1ABAAB4D00CADA46 /* URLSession_LabTests.m */,
+				83C01E251ABAAB4D00CADA46 /* Supporting Files */,
+			);
+			path = "URLSession LabTests";
+			sourceTree = "<group>";
+		};
+		83C01E251ABAAB4D00CADA46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				83C01E261ABAAB4D00CADA46 /* URLSession LabTests-Info.plist */,
+				83C01E271ABAAB4D00CADA46 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		83C01DFC1ABAAB4D00CADA46 /* URLSession Lab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83C01E2E1ABAAB4D00CADA46 /* Build configuration list for PBXNativeTarget "URLSession Lab" */;
+			buildPhases = (
+				83C01DF91ABAAB4D00CADA46 /* Sources */,
+				83C01DFA1ABAAB4D00CADA46 /* Frameworks */,
+				83C01DFB1ABAAB4D00CADA46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "URLSession Lab";
+			productName = "URLSession Lab";
+			productReference = 83C01DFD1ABAAB4D00CADA46 /* URLSession Lab.app */;
+			productType = "com.apple.product-type.application";
+		};
+		83C01E1D1ABAAB4D00CADA46 /* URLSession LabTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83C01E311ABAAB4D00CADA46 /* Build configuration list for PBXNativeTarget "URLSession LabTests" */;
+			buildPhases = (
+				83C01E1A1ABAAB4D00CADA46 /* Sources */,
+				83C01E1B1ABAAB4D00CADA46 /* Frameworks */,
+				83C01E1C1ABAAB4D00CADA46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83C01E231ABAAB4D00CADA46 /* PBXTargetDependency */,
+			);
+			name = "URLSession LabTests";
+			productName = "URLSession LabTests";
+			productReference = 83C01E1E1ABAAB4D00CADA46 /* URLSession LabTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83C01DF51ABAAB4D00CADA46 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = USL;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Tong Guo";
+				TargetAttributes = {
+					83C01E1D1ABAAB4D00CADA46 = {
+						TestTargetID = 83C01DFC1ABAAB4D00CADA46;
+					};
+				};
+			};
+			buildConfigurationList = 83C01DF81ABAAB4D00CADA46 /* Build configuration list for PBXProject "URLSession Lab" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83C01DF41ABAAB4D00CADA46;
+			productRefGroup = 83C01DFE1ABAAB4D00CADA46 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				83C01DFC1ABAAB4D00CADA46 /* URLSession Lab */,
+				83C01E1D1ABAAB4D00CADA46 /* URLSession LabTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		83C01DFB1ABAAB4D00CADA46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C01E0B1ABAAB4D00CADA46 /* InfoPlist.strings in Resources */,
+				83C01E191ABAAB4D00CADA46 /* Images.xcassets in Resources */,
+				83C01E111ABAAB4D00CADA46 /* Credits.rtf in Resources */,
+				83C01E171ABAAB4D00CADA46 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83C01E1C1ABAAB4D00CADA46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C01E291ABAAB4D00CADA46 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		83C01DF91ABAAB4D00CADA46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C01E0D1ABAAB4D00CADA46 /* main.m in Sources */,
+				83C01E141ABAAB4D00CADA46 /* USLAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83C01E1A1ABAAB4D00CADA46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C01E2B1ABAAB4D00CADA46 /* URLSession_LabTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83C01E231ABAAB4D00CADA46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83C01DFC1ABAAB4D00CADA46 /* URLSession Lab */;
+			targetProxy = 83C01E221ABAAB4D00CADA46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		83C01E091ABAAB4D00CADA46 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83C01E0A1ABAAB4D00CADA46 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		83C01E0F1ABAAB4D00CADA46 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83C01E101ABAAB4D00CADA46 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		83C01E151ABAAB4D00CADA46 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83C01E161ABAAB4D00CADA46 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		83C01E271ABAAB4D00CADA46 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83C01E281ABAAB4D00CADA46 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		83C01E2C1ABAAB4D00CADA46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		83C01E2D1ABAAB4D00CADA46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		83C01E2F1ABAAB4D00CADA46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "URLSession Lab/URLSession Lab-Prefix.pch";
+				INFOPLIST_FILE = "URLSession Lab/URLSession Lab-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		83C01E301ABAAB4D00CADA46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "URLSession Lab/URLSession Lab-Prefix.pch";
+				INFOPLIST_FILE = "URLSession Lab/URLSession Lab-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		83C01E321ABAAB4D00CADA46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/URLSession Lab.app/Contents/MacOS/URLSession Lab";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "URLSession Lab/URLSession Lab-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "URLSession LabTests/URLSession LabTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		83C01E331ABAAB4D00CADA46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/URLSession Lab.app/Contents/MacOS/URLSession Lab";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "URLSession Lab/URLSession Lab-Prefix.pch";
+				INFOPLIST_FILE = "URLSession LabTests/URLSession LabTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		83C01DF81ABAAB4D00CADA46 /* Build configuration list for PBXProject "URLSession Lab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83C01E2C1ABAAB4D00CADA46 /* Debug */,
+				83C01E2D1ABAAB4D00CADA46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83C01E2E1ABAAB4D00CADA46 /* Build configuration list for PBXNativeTarget "URLSession Lab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83C01E2F1ABAAB4D00CADA46 /* Debug */,
+				83C01E301ABAAB4D00CADA46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		83C01E311ABAAB4D00CADA46 /* Build configuration list for PBXNativeTarget "URLSession LabTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83C01E321ABAAB4D00CADA46 /* Debug */,
+				83C01E331ABAAB4D00CADA46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83C01DF51ABAAB4D00CADA46 /* Project object */;
+}
