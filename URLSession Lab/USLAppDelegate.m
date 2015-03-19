@@ -7,11 +7,31 @@
 //
 
 #import "USLAppDelegate.h"
+#import "USLMainWindowController.h"
 
 @implementation USLAppDelegate
 
+@synthesize mainWindowController = _mainWindowController;
+
+- ( void ) awakeFromNib
+    {
+    NSLog( @"Before Setting: %@", [ NSURLCache sharedURLCache ] );
+
+    NSString* cachePath = [ NSTemporaryDirectory() stringByAppendingString: @"URLSessionLabCaches" ];
+    NSURLCache* globalCache = [ [ [ NSURLCache alloc ] initWithMemoryCapacity: 20 * 1024
+                                                                 diskCapacity: 10 * 1024 * 1024
+                                                                     diskPath: cachePath ] autorelease ];
+    [ NSURLCache setSharedURLCache: globalCache ];
+
+    NSLog( @"After Setting: %@", [ NSURLCache sharedURLCache ] );
+
+    self.mainWindowController = [ USLMainWindowController mainWindowController ];
+    }
+
 - ( void ) applicationDidFinishLaunching: ( NSNotification* )_Notification
     {
+    [ self.mainWindowController showWindow: self ];
+#if 0
     NSURLSession* defaultSession =
         [ NSURLSession sessionWithConfiguration: [ NSURLSessionConfiguration defaultSessionConfiguration ] ];
 
@@ -28,7 +48,7 @@
             if ( !error )
                 NSLog( @"Hot Topics: %@", responseBody );
             else
-                [ self.window presentError: error ];
+                [ self.mainWindowController.window presentError: error ];
 
             NSLog( @"Response: %@",_Response );
 
@@ -38,6 +58,7 @@
 
     [ hotTopics resume ];
     NSLog( @"Count of bytes expected to receive: %lld", hotTopics.countOfBytesExpectedToReceive );
+#endif
     }
 
 @end

@@ -8,8 +8,27 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface USLAppDelegate : NSObject <NSApplicationDelegate>
+@class USLMainWindowController;
 
-@property (assign) IBOutlet NSWindow *window;
+typedef void ( ^USLCompletionHandlerType )();
 
+@interface USLAppDelegate : NSObject < NSApplicationDelegate
+                                     , NSURLSessionDelegate
+                                     , NSURLSessionTaskDelegate
+                                     , NSURLSessionDataDelegate
+                                     , NSURLSessionDownloadDelegate
+                                     >
+
+@property ( retain ) USLMainWindowController* mainWindowController;
+
+@property ( copy ) NSURLSession* backgroundSession;
+@property ( copy ) NSURLSession* defaultSession;
+@property ( copy ) NSURLSession* ephemeralSession;
+
+@property ( retain ) NSMutableDictionary* completionHandlerDictionary;
+
+#if 0
+- ( void ) addCompletionHandler: ( USLCompletionHandlerType )_Handler forSession: ( NSString* )_SessionID;
+- ( void ) callCompletionHandlerForSession: ( NSString* )_SessionID;
+#endif
 @end

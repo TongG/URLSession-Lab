@@ -18,6 +18,8 @@
 		83C01E211ABAAB4D00CADA46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C01E001ABAAB4D00CADA46 /* Cocoa.framework */; };
 		83C01E291ABAAB4D00CADA46 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E271ABAAB4D00CADA46 /* InfoPlist.strings */; };
 		83C01E2B1ABAAB4D00CADA46 /* URLSession_LabTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E2A1ABAAB4D00CADA46 /* URLSession_LabTests.m */; };
+		83C01E361ABAF4E300CADA46 /* USLMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */; };
+		83C01E381ABAF57300CADA46 /* USLMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E371ABAF57300CADA46 /* USLMainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,9 @@
 		83C01E261ABAAB4D00CADA46 /* URLSession LabTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "URLSession LabTests-Info.plist"; sourceTree = "<group>"; };
 		83C01E281ABAAB4D00CADA46 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83C01E2A1ABAAB4D00CADA46 /* URLSession_LabTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLSession_LabTests.m; sourceTree = "<group>"; };
+		83C01E341ABAF4E300CADA46 /* USLMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USLMainWindowController.h; sourceTree = "<group>"; };
+		83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USLMainWindowController.m; sourceTree = "<group>"; };
+		83C01E371ABAF57300CADA46 /* USLMainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = USLMainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +122,10 @@
 			children = (
 				83C01E121ABAAB4D00CADA46 /* USLAppDelegate.h */,
 				83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */,
+				83C01E341ABAF4E300CADA46 /* USLMainWindowController.h */,
+				83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */,
 				83C01E151ABAAB4D00CADA46 /* USLMainMenu.xib */,
+				83C01E371ABAF57300CADA46 /* USLMainWindow.xib */,
 				83C01E181ABAAB4D00CADA46 /* Images.xcassets */,
 				83C01E071ABAAB4D00CADA46 /* Supporting Files */,
 			);
@@ -232,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83C01E0B1ABAAB4D00CADA46 /* InfoPlist.strings in Resources */,
+				83C01E381ABAF57300CADA46 /* USLMainWindow.xib in Resources */,
 				83C01E191ABAAB4D00CADA46 /* Images.xcassets in Resources */,
 				83C01E111ABAAB4D00CADA46 /* Credits.rtf in Resources */,
 				83C01E171ABAAB4D00CADA46 /* USLMainMenu.xib in Resources */,
@@ -255,6 +264,7 @@
 			files = (
 				83C01E0D1ABAAB4D00CADA46 /* main.m in Sources */,
 				83C01E141ABAAB4D00CADA46 /* USLAppDelegate.m in Sources */,
+				83C01E361ABAF4E300CADA46 /* USLMainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
