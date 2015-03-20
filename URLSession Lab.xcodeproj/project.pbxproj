@@ -42,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		835807A11ABB3D0A00BCE11A /* URLSession Lab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "URLSession Lab.entitlements"; sourceTree = "<group>"; };
 		83C01DFD1ABAAB4D00CADA46 /* URLSession Lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "URLSession Lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C01E001ABAAB4D00CADA46 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		83C01E031ABAAB4D00CADA46 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -144,6 +145,7 @@
 		83C01E061ABAAB4D00CADA46 /* URLSession Lab */ = {
 			isa = PBXGroup;
 			children = (
+				835807A11ABB3D0A00BCE11A /* URLSession Lab.entitlements */,
 				83C01E511ABB337600CADA46 /* Main Window */,
 				83C01E501ABB335100CADA46 /* Preferences Panel */,
 				83C01E071ABAAB4D00CADA46 /* Supporting Files */,
@@ -269,6 +271,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tong Guo";
 				TargetAttributes = {
+					83C01DFC1ABAAB4D00CADA46 = {
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
 					83C01E1D1ABAAB4D00CADA46 = {
 						TestTargetID = 83C01DFC1ABAAB4D00CADA46;
 					};
@@ -466,6 +475,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_ENTITLEMENTS = "URLSession Lab/URLSession Lab.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "URLSession Lab/URLSession Lab-Prefix.pch";
@@ -480,6 +491,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CODE_SIGN_ENTITLEMENTS = "URLSession Lab/URLSession Lab.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "URLSession Lab/URLSession Lab-Prefix.pch";
@@ -548,6 +561,7 @@
 				83C01E301ABAAB4D00CADA46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83C01E311ABAAB4D00CADA46 /* Build configuration list for PBXNativeTarget "URLSession LabTests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +570,7 @@
 				83C01E331ABAAB4D00CADA46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

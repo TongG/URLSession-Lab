@@ -13,21 +13,9 @@
 
 typedef void ( ^USLCompletionHandlerType )();
 
-@interface USLAppDelegate : NSObject < NSApplicationDelegate
-                                     , NSURLSessionDelegate
-                                     , NSURLSessionTaskDelegate
-                                     , NSURLSessionDataDelegate
-                                     , NSURLSessionDownloadDelegate
-                                     >
+@interface USLAppDelegate : NSObject <NSApplicationDelegate>
 
 @property ( retain ) USLMainWindowController* mainWindowController;
-
-@property ( copy ) NSURLSession* backgroundSession;
-@property ( copy ) NSURLSession* defaultSession;
-@property ( copy ) NSURLSession* ephemeralSession;
-
-@property ( retain ) NSMutableDictionary* completionHandlerDictionary;
-
 @property ( retain ) MASPreferencesWindowController* preferencesWindowController;
 
 - ( IBAction ) showPreferencesPanel: ( id )_Sender;

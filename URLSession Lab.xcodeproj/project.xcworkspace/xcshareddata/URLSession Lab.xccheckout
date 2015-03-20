@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4FE861D9-A301-4BE8-B120-BDC272F0ED3D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>URLSession Lab</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5F83536E-4B43-4ED7-9D41-3B06E9D9558B</key>
+		<string>https://github.com/shpakovski/MASPreferences.git</string>
+		<key>E88BD7C0-C78E-406E-A950-37E457C5A4EC</key>
+		<string>https://github.com/TongG/URLSession-Lab.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>URLSession Lab.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5F83536E-4B43-4ED7-9D41-3B06E9D9558B</key>
+		<string>../../URLSession Lab/MASPreferences</string>
+		<key>E88BD7C0-C78E-406E-A950-37E457C5A4EC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/TongG/URLSession-Lab.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E88BD7C0-C78E-406E-A950-37E457C5A4EC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5F83536E-4B43-4ED7-9D41-3B06E9D9558B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MASPreferences</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E88BD7C0-C78E-406E-A950-37E457C5A4EC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>URLSession Lab</string>
+		</dict>
+	</array>
+</dict>
+</plist>

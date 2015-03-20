@@ -17,14 +17,14 @@
         <window title="URLSession Lab" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="KnK-eB-sKh">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="282" width="579" height="360"/>
+            <rect key="contentRect" x="335" y="282" width="599" height="411"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="NaR-Xf-4wB">
-                <rect key="frame" x="0.0" y="0.0" width="579" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="599" height="411"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="opB-g5-Pba">
-                        <rect key="frame" x="20" y="318" width="499" height="22"/>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="opB-g5-Pba">
+                        <rect key="frame" x="20" y="370" width="320" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="tXY-gN-T3A">
                             <font key="font" metaFont="system"/>
@@ -32,33 +32,66 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OI6-Ao-SA1">
-                        <rect key="frame" x="527" y="316" width="32" height="25"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OI6-Ao-SA1">
+                        <rect key="frame" x="348" y="368" width="50" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundTextured" title="Go" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WZx-6z-7ZP">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="goAction:" target="-1" id="v0V-Pn-Pxl"/>
+                            <action selector="goAction:" target="-2" id="L6I-h7-SHb"/>
                         </connections>
                     </button>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xom-jN-3a0">
-                        <rect key="frame" x="20" y="20" width="539" height="290"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhr-IU-i22">
+                        <rect key="frame" x="406" y="368" width="50" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Pause" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XVo-ap-HYs">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="pauseAction:" target="-2" id="Hed-GF-4HK"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ApB-bM-dhr">
+                        <rect key="frame" x="464" y="368" width="63" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Resume" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GMA-aw-Io5">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="resumeAction:" target="-2" id="Jlx-al-RG7"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Fr-2I-zbJ">
+                        <rect key="frame" x="529" y="368" width="50" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Stop" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0kW-Vt-ozw">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="stopAction:" target="-2" id="ocA-32-1zm"/>
+                        </connections>
+                    </button>
+                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xom-jN-3a0">
+                        <rect key="frame" x="20" y="20" width="559" height="312"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" id="oi7-48-xzN">
-                            <rect key="frame" x="1" y="1" width="537" height="288"/>
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="oi7-48-xzN">
+                            <rect key="frame" x="1" y="1" width="557" height="310"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="D9a-hQ-118">
-                                    <rect key="frame" x="0.0" y="0.0" width="537" height="288"/>
+                                <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="D9a-hQ-118">
+                                    <rect key="frame" x="0.0" y="0.0" width="557" height="310"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="537" height="288"/>
-                                    <size key="maxSize" width="547" height="10000000"/>
+                                    <size key="minSize" width="557" height="310"/>
+                                    <size key="maxSize" width="598" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="537" height="288"/>
-                                    <size key="maxSize" width="547" height="10000000"/>
+                                    <size key="minSize" width="557" height="310"/>
+                                    <size key="maxSize" width="598" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,24 +101,22 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5yG-5G-0Nx">
-                            <rect key="frame" x="522" y="1" width="16" height="288"/>
+                            <rect key="frame" x="542" y="1" width="16" height="310"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c9J-WC-Pvw">
+                        <rect key="frame" x="20" y="338" width="77" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="roundTextured" title="Download" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kTn-h4-Dgc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="downloadAction:" target="-2" id="4WO-te-f7O"/>
+                        </connections>
+                    </button>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="xom-jN-3a0" firstAttribute="top" secondItem="opB-g5-Pba" secondAttribute="bottom" constant="8" id="4Ne-iX-h5a"/>
-                    <constraint firstItem="OI6-Ao-SA1" firstAttribute="top" secondItem="NaR-Xf-4wB" secondAttribute="top" constant="20" id="Akr-Zp-zV7"/>
-                    <constraint firstItem="xom-jN-3a0" firstAttribute="leading" secondItem="NaR-Xf-4wB" secondAttribute="leading" constant="20" id="AwM-Ks-NV1"/>
-                    <constraint firstItem="OI6-Ao-SA1" firstAttribute="leading" secondItem="opB-g5-Pba" secondAttribute="trailing" constant="8" id="Eaq-HM-wX6"/>
-                    <constraint firstAttribute="trailing" secondItem="OI6-Ao-SA1" secondAttribute="trailing" constant="20" id="JG0-37-DmH"/>
-                    <constraint firstAttribute="trailing" secondItem="xom-jN-3a0" secondAttribute="trailing" constant="20" id="MVU-CA-o4S"/>
-                    <constraint firstItem="opB-g5-Pba" firstAttribute="top" secondItem="NaR-Xf-4wB" secondAttribute="top" constant="20" id="Na2-d5-UfV"/>
-                    <constraint firstAttribute="bottom" secondItem="xom-jN-3a0" secondAttribute="bottom" constant="20" id="T56-ks-r5i"/>
-                    <constraint firstItem="xom-jN-3a0" firstAttribute="top" secondItem="OI6-Ao-SA1" secondAttribute="bottom" constant="8" id="YNZ-Bc-nf0"/>
-                    <constraint firstItem="xom-jN-3a0" firstAttribute="top" secondItem="OI6-Ao-SA1" secondAttribute="bottom" constant="8" id="caC-ZH-LVq"/>
-                    <constraint firstItem="opB-g5-Pba" firstAttribute="leading" secondItem="NaR-Xf-4wB" secondAttribute="leading" constant="20" id="eIQ-pE-37A"/>
-                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="FFM-E7-KkB"/>
