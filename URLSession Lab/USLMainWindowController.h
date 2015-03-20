@@ -58,12 +58,19 @@
 
 + ( id ) mainWindowController;
 
+#pragma mark Data Task
 - ( IBAction ) goAction: ( id )_Sender;
-- ( IBAction ) downloadAction: ( id )_Sender;
-
 - ( IBAction ) pauseAction: ( id )_Sender;
 - ( IBAction ) resumeAction: ( id )_Sender;
 - ( IBAction ) stopAction: ( id )_Sender;
+
+#pragma mark Download Task
+@property ( retain ) NSData* resumeData;
+
+- ( IBAction ) downloadAction: ( id )_Sender;
+- ( IBAction ) pauseDownloadAction: ( id )_Sender;
+- ( IBAction ) resumeDownloadAction: ( id )_Sender;
+- ( IBAction ) stopDownloadAction: ( id )_Sender;
 
 @end // USLMainWindowController
 

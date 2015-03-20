@@ -42,6 +42,8 @@
 
 @synthesize completionHandlerDictionary;
 
+@synthesize resumeData = _resumeData;
+
 #pragma mark Initializers
 + ( id ) mainWindowController
     {
@@ -108,6 +110,9 @@
                     task: ( NSURLSessionTask* )_Task
     didCompleteWithError: ( NSError* )_Error
     {
+    if ( _Error.userInfo[ NSURLSessionDownloadTaskResumeData ] )
+        self.resumeData = _Error.userInfo[ NSURLSessionDownloadTaskResumeData ];
+
     fprintf( stdout, "\n\n============ Completed! ==========\n\n\n" );
     NSLog( @"Bytes: %lu", self.receivedData.length );
     fprintf( stdout, "\n\n============ Completed! ==========\n\n\n" );
@@ -116,54 +121,48 @@
         [ self presentError: _Error ];
     }
 
+- ( void )         URLSession: ( NSURLSession* )_Session
+                 downloadTask: ( NSURLSessionDownloadTask* )_DownloadTask
+    didFinishDownloadingToURL: ( NSURL* )_Location
+    {
+    NSURLRequest* request = _DownloadTask.currentRequest;
+    NSURLSessionConfiguration* configuration = _Session.configuration;
+
+    fprintf( stdout, "\n\n============ Completed! ==========\n" );
+    NSLog( @"Request: %@", request );
+    NSLog( @"Location: %@", _Location );
+    fprintf( stdout, "============ Completed! ==========\n\n\n" );
+    }
+
+- ( void ) URLSession: ( NSURLSession* )_Session
+         downloadTask: ( NSURLSessionDownloadTask* )_ResumedDownloadTask
+    didResumeAtOffset: ( int64_t )_FileOffset
+  expectedTotalBytes:( int64_t )_ExpectedTotalBytes
+    {
+
+    }
+
+- ( void )         URLSession: ( NSURLSession* )_Session
+                 downloadTask: ( NSURLSessionDownloadTask* )_DownloadTask
+                 didWriteData: ( int64_t )_BytesWritten
+            totalBytesWritten: ( int64_t )_TotalBytesWritten
+    totalBytesExpectedToWrite: ( int64_t )_TotalBytesExpectedToWrite
+    {
+    fprintf( stdout, "\n\n=================================\n" );
+    NSLog( @"Bytes Written: %llu", _BytesWritten );
+    NSLog( @"Total Bytes Written: %llu", _TotalBytesWritten );
+    NSLog( @"Total Bytes Expected To Write: %llu", _TotalBytesExpectedToWrite );
+    fprintf( stdout, "===============================\n\n\n" );
+    }
+
+#pragma mark Data Task
 - ( IBAction ) goAction: ( id )_Sender
     {
     NSString* URLString = self.URLField.stringValue;
     NSURL* URL = [ NSURL URLWithString: URLString ];
 
-#if 0
-    NSURLSessionConfiguration* V2EXUserHomePageConfig = [ NSURLSessionConfiguration defaultSessionConfiguration ];
-    [ V2EXUserHomePageConfig setURLCache: [ NSURLCache sharedURLCache ] ];
-
-    self.defaultSession = [ NSURLSession sessionWithConfiguration: V2EXUserHomePageConfig ];
-
-    self.dataTask = [ self.defaultSession dataTaskWithURL: URL
-                                        completionHandler:
-        ^( NSData* _Data, NSURLResponse* _Response, NSError* _Error )
-            {
-            if ( !_Error )
-                {
-//                NSURLCache* sharedCache = [ NSURLCache sharedURLCache ];
-//
-                NSURLRequest* currentRequest = [ self.dataTask currentRequest ];
-//                [ sharedCache storeCachedResponse:
-//                    [ [ [ NSCachedURLResponse alloc ] initWithResponse: _Response
-//                                                                  data: _Data
-//                                                              userInfo: @{ @"Cache Test" : @"USLMainWindowController" }
-//                                                         storagePolicy: NSURLCacheStorageAllowed ] autorelease ]
-//                                       forRequest: currentRequest ];
-
-                NSArray* JSONValue = [ NSJSONSerialization JSONObjectWithData: _Data
-                                                                      options: 0
-                                                                        error: nil ];
-                NSLog( @"Body Data: %@", JSONValue );
-                }
-            else
-                [ self.window performSelectorOnMainThread: @selector( presentError: ) withObject: _Error waitUntilDone: YES ];
-            } ];
-#endif
-
     self.dataTask = [ self.defaultSession dataTaskWithURL: URL ];
 
-    [ self.dataTask resume ];
-    }
-
-- ( IBAction ) downloadAction: ( id )_Sender
-    {
-    NSString* URLString = self.URLField.stringValue;
-    NSURL* URL = [ NSURL URLWithString: URLString ];
-
-    self.downloadTask = [ self.backgroundSession downloadTaskWithURL: URL ];
     [ self.dataTask resume ];
     }
 
@@ -180,6 +179,36 @@
 - ( IBAction ) stopAction: ( id )_Sender
     {
     [ self.dataTask cancel ];
+    }
+
+#pragma mark Download Task
+- ( IBAction ) downloadAction: ( id )_Sender
+    {
+    NSString* URLString = self.URLField.stringValue;
+    NSURL* URL = [ NSURL URLWithString: URLString ];
+
+    self.downloadTask = [ self.defaultSession downloadTaskWithURL: URL ];
+    [ self.downloadTask resume ];
+    }
+
+- ( IBAction ) pauseDownloadAction: ( id )_Sender
+    {
+    [ self.downloadTask suspend ];
+    }
+
+- ( IBAction ) resumeDownloadAction: ( id )_Sender
+    {
+    self.downloadTask = [ self.defaultSession downloadTaskWithResumeData: self.resumeData ];
+    [ self.downloadTask resume ];
+    }
+
+- ( IBAction ) stopDownloadAction: ( id )_Sender
+    {
+    [ self.downloadTask cancelByProducingResumeData:
+        ^( NSData* _ResumeData )
+            {
+            self.resumeData = _ResumeData;
+            } ];
     }
 
 @end // USLMainWindowController
