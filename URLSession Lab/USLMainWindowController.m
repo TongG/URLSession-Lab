@@ -181,6 +181,26 @@
     [ self.dataTask cancel ];
     }
 
+- ( IBAction ) requestTwitterTokenAction: ( id )_Sender
+    {
+    NSURL* URL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
+    NSMutableURLRequest* tokenRequest = [ NSMutableURLRequest requestWithURL: URL ];
+    [ tokenRequest setAllHTTPHeaderFields: @{ @"Authorization" : @"OAuth oauth_consumer_key=\"hgHSOcN9Qc4S0W3MXykn7ajUi\", oauth_nonce=\"kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg1997787\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"1427115174\", oauth_version=\"1.0\"" } ];
+    self.dataTask = [ self.defaultSession dataTaskWithRequest: tokenRequest
+                                            completionHandler:
+        ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
+            {
+            NSError* error = nil;
+//            NSArray* JSON = [ NSJSONSerialization JSONObjectWithData: _Body options: 0 error: &error ];
+            if ( !error )
+                NSLog( @"Request Token: %@", [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ]);
+            else
+                [ self performSelectorOnMainThread: @selector( presentError: ) withObject: error waitUntilDone: YES ];
+            } ];
+
+    [ self.dataTask resume ];
+    }
+
 #pragma mark Download Task
 - ( IBAction ) downloadAction: ( id )_Sender
     {
@@ -209,6 +229,53 @@
             {
             self.resumeData = _ResumeData;
             } ];
+    }
+
+#import <CommonCrypto/CommonHMAC.h>
+
+- ( IBAction ) signWithHMSCSHA1: ( id )_Sender
+    {
+    NSLog( @"%@", [ self timestamp ] );
+    NSLog( @"Nonce: %@", [ self nonce ] );
+    NSLog( @"%@", [ self signWithHMACSHA1: self.URLField.stringValue signingKey: self.signingKeyField.stringValue ] );
+    }
+
+- ( NSString* ) signWithHMACSHA1: ( NSString* )_SignatureBaseString
+                      signingKey: ( NSString* )_SigningKey
+    {
+    unsigned char buffer[ CC_SHA1_DIGEST_LENGTH ];
+    CCHmac( kCCHmacAlgSHA1
+          , _SigningKey.UTF8String, _SigningKey.length
+          , _SignatureBaseString.UTF8String, _SignatureBaseString.length
+          , buffer
+          );
+
+    NSData* signatureData = [ NSData dataWithBytes: buffer length: CC_SHA1_DIGEST_LENGTH ];
+    NSString* base64 = [ signatureData base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength ];
+
+    return base64;
+    }
+
+- ( NSString* ) timestamp
+    {
+    NSTimeInterval UnixEpoch = [ [ NSDate date ] timeIntervalSince1970 ];
+    NSString* timestamp = [ NSString stringWithFormat: @"%lu", ( NSUInteger )floor( UnixEpoch ) ];
+    return timestamp;
+    }
+
+- ( NSString* ) nonce
+    {
+    CFUUIDRef UUID = CFUUIDCreate( kCFAllocatorDefault );
+    CFStringRef cfStringRep = CFUUIDCreateString( kCFAllocatorDefault, UUID ) ;
+    NSString* stringRepresentation = [ ( __bridge NSString* )cfStringRep copy ];
+
+    if ( UUID )
+        CFRelease( UUID );
+
+    if ( cfStringRep )
+        CFRelease( cfStringRep );
+
+    return stringRepresentation;
     }
 
 @end // USLMainWindowController

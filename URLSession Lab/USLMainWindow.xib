@@ -8,7 +8,9 @@
             <connections>
                 <outlet property="URLField" destination="opB-g5-Pba" id="wfb-3g-wlO"/>
                 <outlet property="goButton" destination="OI6-Ao-SA1" id="10e-fA-6gT"/>
+                <outlet property="requestTwitterToken" destination="FzR-Nl-LwC" id="iQI-H1-aAC"/>
                 <outlet property="responseTextView" destination="D9a-hQ-118" id="wKc-5y-oK1"/>
+                <outlet property="signingKeyField" destination="cSf-G3-p1M" id="jR4-Dv-Yh5"/>
                 <outlet property="window" destination="KnK-eB-sKh" id="eMP-Fc-Zi7"/>
             </connections>
         </customObject>
@@ -21,7 +23,7 @@
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="NaR-Xf-4wB">
                 <rect key="frame" x="0.0" y="0.0" width="756" height="411"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="opB-g5-Pba">
                         <rect key="frame" x="20" y="370" width="320" height="22"/>
@@ -173,6 +175,37 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FzR-Nl-LwC">
+                        <rect key="frame" x="350" y="261" width="180" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Request Twitter Token" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JIa-ax-rsc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="requestTwitterTokenAction:" target="-2" id="lwu-tX-foa"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QQd-qq-xFB">
+                        <rect key="frame" x="350" y="197" width="182" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Sign with HMAC-SHA1" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JTa-0F-zqB">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="signWithHMSCSHA1:" target="-2" id="QVt-s6-j26"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSf-G3-p1M">
+                        <rect key="frame" x="356" y="233" width="170" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="35a-z3-ObC">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
