@@ -223,16 +223,14 @@
 
 - ( IBAction ) requestTwitterTokenAction: ( id )_Sender
     {
-#if 1
-    NSURL* URL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
-    NSMutableURLRequest* tokenRequest = [ NSMutableURLRequest requestWithURL: URL ];
+    NSURL* baseURL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
+
+    NSMutableURLRequest* tokenRequest = [ NSMutableURLRequest requestWithURL: baseURL ];
 
     NSString* HTTPMethod = @"POST";
-    NSURL* baseURL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
     NSString* OAuthCallback = @"oob";
     NSString* OAuthConsumerKey = @"hgHSOcN9Qc4S0W3MXykn7ajUi";
     NSString* OAuthNonce = [ self nonce ];
-    NSString* OAuthSignature = nil;
     NSString* OAuthSignatureMethod = @"HMAC-SHA1";
     NSString* OAuthTimestamp = [ self timestamp ];
     NSString* OAuthVersion = @"1.0";
@@ -271,10 +269,12 @@
     [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
     [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthVersion ] ];
 
-    NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
-                                                          encoding: NSUTF8StringEncoding
-                                                             error: nil ];
+    NSString* consumerSecret = @"hR511PtIsGtIfPwbH41BQpuNDJUZYQj5oeaPK1rQiPOqAm31D8&";
+//    NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
+//                                                          encoding: NSUTF8StringEncoding
+//                                                             error: nil ];
 
+    NSString* OAuthSignature = nil;
     NSMutableString* signingKey = [ NSMutableString stringWithFormat: @"%@&", consumerSecret ];
     OAuthSignature = [ self signWithHMACSHA1: signatureBaseString signingKey: signingKey ];
     OAuthSignature = [ self TG_percentEncodeString: OAuthSignature ];
@@ -296,9 +296,6 @@
                                                                  , OAuthVersion ];
 
     [ tokenRequest setAllHTTPHeaderFields: @{ @"Authorization" : authorizationHeader } ];
-
-    NSDictionary* headers = [ tokenRequest allHTTPHeaderFields ];
-
     self.dataTask = [ self.defaultSession dataTaskWithRequest: tokenRequest
                                             completionHandler:
         ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
@@ -313,7 +310,6 @@
             } ];
 
     [ self.dataTask resume ];
-#endif
     }
 
 #pragma mark Download Task
