@@ -473,7 +473,6 @@
 		83C01E2F1ABAAB4D00CADA46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = "URLSession Lab/URLSession Lab.entitlements";
 				CODE_SIGN_IDENTITY = "-";
@@ -489,7 +488,6 @@
 		83C01E301ABAAB4D00CADA46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = "URLSession Lab/URLSession Lab.entitlements";
 				CODE_SIGN_IDENTITY = "-";
