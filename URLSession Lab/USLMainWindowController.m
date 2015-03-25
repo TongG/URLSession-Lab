@@ -213,7 +213,6 @@
         }
 
     return percentEncodedString;
-
     }
 
 - ( NSString* ) TG_percentEncodeURL: ( NSURL* )_URL
@@ -268,10 +267,9 @@
     [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthTimestamp ] ];
     [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
 
-    [ signatureBaseString appendString: @"auth_version" ];
+    [ signatureBaseString appendString: @"oauth_version" ];
     [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
     [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthVersion ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
 
     NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
                                                           encoding: NSUTF8StringEncoding
@@ -281,29 +279,32 @@
     OAuthSignature = [ self signWithHMACSHA1: signatureBaseString signingKey: signingKey ];
     OAuthSignature = [ self TG_percentEncodeString: OAuthSignature ];
 
-    [ tokenRequest setAllHTTPHeaderFields:
-        @{ @"Authorization" : [ NSString stringWithFormat: @"OAuth "
-                                                            "oauth_callback=\"%@\", "
-                                                            "oauth_consumer_key=\"%@\", "
-                                                            "oauth_nonce=\"%@\", "
-                                                            "oauth_signature=\"%@\", "
-                                                            "oauth_signature_method=\"%@\", "
-                                                            "oauth_timestamp=\"%@\", "
-                                                            "oauth_version=\"%@\""
-                                                         , OAuthCallback
-                                                         , OAuthConsumerKey
-                                                         , OAuthNonce
-                                                         , OAuthSignature
-                                                         , OAuthSignatureMethod
-                                                         , OAuthTimestamp
-                                                         , OAuthVersion ] } ];
+    NSString* authorizationHeader = [ NSString stringWithFormat: @"OAuth "
+                                                                  "oauth_callback=\"%@\", "
+                                                                  "oauth_consumer_key=\"%@\", "
+                                                                  "oauth_nonce=\"%@\", "
+                                                                  "oauth_signature=\"%@\", "
+                                                                  "oauth_signature_method=\"%@\", "
+                                                                  "oauth_timestamp=\"%@\", "
+                                                                  "oauth_version=\"%@\""
+                                                                 , OAuthCallback
+                                                                 , OAuthConsumerKey
+                                                                 , OAuthNonce
+                                                                 , OAuthSignature
+                                                                 , OAuthSignatureMethod
+                                                                 , OAuthTimestamp
+                                                                 , OAuthVersion ];
+
+    [ tokenRequest setAllHTTPHeaderFields: @{ @"Authorization" : authorizationHeader } ];
+
+    NSDictionary* headers = [ tokenRequest allHTTPHeaderFields ];
 
     self.dataTask = [ self.defaultSession dataTaskWithRequest: tokenRequest
                                             completionHandler:
         ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
             {
             NSError* error = nil;
-            NSArray* JSON = [ NSJSONSerialization JSONObjectWithData: _Body options: 0 error: &error ];
+//            NSArray* JSON = [ NSJSONSerialization JSONObjectWithData: _Body options: 0 error: &error ];
             if ( !error )
 //                NSLog( @"JSON: %@", JSON );
                 NSLog( @"Request Token: %@", [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ]);
@@ -349,8 +350,6 @@
 
 - ( IBAction ) signWithHMSCSHA1: ( id )_Sender
     {
-    NSLog( @"%@", [ self timestamp ] );
-    NSLog( @"Nonce: %@", [ self nonce ] );
     NSLog( @"%@", [ self signWithHMACSHA1: self.URLField.stringValue signingKey: self.signingKeyField.stringValue ] );
     }
 
