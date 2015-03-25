@@ -221,6 +221,28 @@
     return [ self TG_percentEncodeString: absoluteString ];
     }
 
+- ( NSString* ) signatureBaseString: ( NSString* )_HTTPMethod
+                            baseURL: ( NSURL* )_APIURL
+                  requestParameters: ( NSArray* )_RequestParams
+    {
+    NSMutableString* signatureBaseString = [ NSMutableString stringWithString: _HTTPMethod ];
+    [ signatureBaseString appendString: @"&" ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeURL: _APIURL ] ];
+    [ signatureBaseString appendString: @"&" ];
+
+    for ( NSDictionary* _Param in _RequestParams )
+        {
+        NSString* key = [ _Param allKeys ].firstObject;
+        [ signatureBaseString appendString: key ];
+        [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
+        [ signatureBaseString appendString: [ self TG_percentEncodeString: _Param[ key ] ] ];
+        [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
+        }
+
+    [ signatureBaseString deleteCharactersInRange: NSMakeRange( signatureBaseString.length - 3, 3 ) ];
+    return [ [ signatureBaseString copy ] autorelease ];
+    }
+
 - ( IBAction ) requestTwitterTokenAction: ( id )_Sender
     {
     NSURL* baseURL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
@@ -233,39 +255,15 @@
     NSString* OAuthTimestamp = [ self timestamp ];
     NSString* OAuthVersion = @"1.0";
 
-    NSMutableString* signatureBaseString = [ NSMutableString stringWithString: HTTPMethod ];
-    [ signatureBaseString appendString: @"&" ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeURL: baseURL ] ];
-    [ signatureBaseString appendString: @"&" ];
-
-    [ signatureBaseString appendString: @"oauth_callback" ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthCallback ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
-
-    [ signatureBaseString appendString: @"oauth_consumer_key" ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthConsumerKey ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
-
-    [ signatureBaseString appendString: @"oauth_nonce" ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthNonce ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
-
-    [ signatureBaseString appendString: @"oauth_signature_method" ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthSignatureMethod ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
-
-    [ signatureBaseString appendString: @"oauth_timestamp" ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthTimestamp ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
-
-    [ signatureBaseString appendString: @"oauth_version" ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
-    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthVersion ] ];
+    NSString* signatureBaseString = [ self signatureBaseString: HTTPMethod
+                                                       baseURL: baseURL
+                                             requestParameters: @[ @{ @"oauth_callback" : OAuthCallback }
+                                                                 , @{ @"oauth_consumer_key" : OAuthConsumerKey }
+                                                                 , @{ @"oauth_nonce" : OAuthNonce }
+                                                                 , @{ @"oauth_signature_method" : OAuthSignatureMethod }
+                                                                 , @{ @"oauth_timestamp" : OAuthTimestamp }
+                                                                 , @{ @"oauth_version" : OAuthVersion }
+                                                                 ] ];
 
     NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
                                                           encoding: NSUTF8StringEncoding
@@ -302,13 +300,17 @@
             NSError* error = nil;
             if ( !error )
                 {
-                NSString* token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
-                NSMutableString* authorizePath = [ NSMutableString stringWithString: @"https://api.twitter.com/oauth/authorize?" ];
-                [ authorizePath appendString: token ];
+                if ( _Body.length )
+                    {
+                    NSString* token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
 
-                NSURL* authorizeURL = [ NSURL URLWithString: authorizePath ];
-                [ [ NSWorkspace sharedWorkspace ] openURL: authorizeURL ];
-                NSLog( @"%@", authorizeURL );
+                    NSMutableString* authorizePath = [ NSMutableString stringWithString: @"https://api.twitter.com/oauth/authorize?" ];
+                    [ authorizePath appendString: token ];
+
+                    NSURL* authorizeURL = [ NSURL URLWithString: authorizePath ];
+                    [ [ NSWorkspace sharedWorkspace ] openURL: authorizeURL ];
+                    NSLog( @"%@", authorizeURL );
+                    }
                 }
             else
                 [ self performSelectorOnMainThread: @selector( presentError: ) withObject: error waitUntilDone: YES ];

@@ -43,8 +43,6 @@
 @property ( unsafe_unretained ) IBOutlet NSTextField* URLField;
 @property ( unsafe_unretained ) IBOutlet NSButton* goButton;
 
-@property ( unsafe_unretained ) IBOutlet NSTextView* responseTextView;
-
 @property ( unsafe_unretained ) IBOutlet NSButton* requestTwitterToken;
 
 @property ( retain ) NSURLSessionDataTask* dataTask;
@@ -75,6 +73,7 @@
 - ( IBAction ) stopDownloadAction: ( id )_Sender;
 
 @property ( unsafe_unretained ) IBOutlet NSTextField* signingKeyField;
+@property ( unsafe_unretained ) IBOutlet NSTextField* PINField;
 - ( IBAction ) signWithHMSCSHA1: ( id )_Sender;
 
 @end // USLMainWindowController
