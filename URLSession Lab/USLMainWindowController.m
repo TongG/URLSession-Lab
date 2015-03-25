@@ -225,8 +225,6 @@
     {
     NSURL* baseURL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
 
-    NSMutableURLRequest* tokenRequest = [ NSMutableURLRequest requestWithURL: baseURL ];
-
     NSString* HTTPMethod = @"POST";
     NSString* OAuthCallback = @"oob";
     NSString* OAuthConsumerKey = @"hgHSOcN9Qc4S0W3MXykn7ajUi";
@@ -269,10 +267,9 @@
     [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
     [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthVersion ] ];
 
-    NSString* consumerSecret = @"hR511PtIsGtIfPwbH41BQpuNDJUZYQj5oeaPK1rQiPOqAm31D8&";
-//    NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
-//                                                          encoding: NSUTF8StringEncoding
-//                                                             error: nil ];
+    NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
+                                                          encoding: NSUTF8StringEncoding
+                                                             error: nil ];
 
     NSString* OAuthSignature = nil;
     NSMutableString* signingKey = [ NSMutableString stringWithFormat: @"%@&", consumerSecret ];
@@ -295,16 +292,24 @@
                                                                  , OAuthTimestamp
                                                                  , OAuthVersion ];
 
-    [ tokenRequest setAllHTTPHeaderFields: @{ @"Authorization" : authorizationHeader } ];
+    NSMutableURLRequest* tokenRequest = [ NSMutableURLRequest requestWithURL: baseURL ];
+    [ tokenRequest setHTTPMethod: @"POST" ];
+    [ tokenRequest setValue: authorizationHeader forHTTPHeaderField: @"Authorization" ];
     self.dataTask = [ self.defaultSession dataTaskWithRequest: tokenRequest
                                             completionHandler:
         ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
             {
             NSError* error = nil;
-//            NSArray* JSON = [ NSJSONSerialization JSONObjectWithData: _Body options: 0 error: &error ];
             if ( !error )
-//                NSLog( @"JSON: %@", JSON );
-                NSLog( @"Request Token: %@", [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ]);
+                {
+                NSString* token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
+                NSMutableString* authorizePath = [ NSMutableString stringWithString: @"https://api.twitter.com/oauth/authorize?" ];
+                [ authorizePath appendString: token ];
+
+                NSURL* authorizeURL = [ NSURL URLWithString: authorizePath ];
+                [ [ NSWorkspace sharedWorkspace ] openURL: authorizeURL ];
+                NSLog( @"%@", authorizeURL );
+                }
             else
                 [ self performSelectorOnMainThread: @selector( presentError: ) withObject: error waitUntilDone: YES ];
             } ];
