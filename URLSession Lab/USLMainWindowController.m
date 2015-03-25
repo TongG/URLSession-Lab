@@ -243,7 +243,22 @@
     return [ [ signatureBaseString copy ] autorelease ];
     }
 
-- ( IBAction ) requestTwitterTokenAction: ( id )_Sender
+- ( NSString* ) authorizationHeaders: ( NSArray* )_RequestParams
+    {
+    NSMutableString* authorizationHeader = [ NSMutableString stringWithFormat: @"OAuth " ];
+
+    for ( NSDictionary* _Param in _RequestParams )
+        {
+        NSString* key = [ _Param allKeys ].firstObject;
+        [ authorizationHeader appendString: [ NSString stringWithFormat: @"%@=\"%@\", ", key, _Param[ key ] ] ];
+        }
+
+    [ authorizationHeader deleteCharactersInRange: NSMakeRange( authorizationHeader.length - 1, 1 ) ];
+
+    return [ [ authorizationHeader copy ] autorelease ];
+    }
+
+- ( IBAction ) requestTokenAction: ( id )_Sender
     {
     NSURL* baseURL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
 
@@ -255,15 +270,17 @@
     NSString* OAuthTimestamp = [ self timestamp ];
     NSString* OAuthVersion = @"1.0";
 
+    NSArray* requestParameters = @[ @{ @"oauth_callback" : OAuthCallback }
+                                  , @{ @"oauth_consumer_key" : OAuthConsumerKey }
+                                  , @{ @"oauth_nonce" : OAuthNonce }
+                                  , @{ @"oauth_signature_method" : OAuthSignatureMethod }
+                                  , @{ @"oauth_timestamp" : OAuthTimestamp }
+                                  , @{ @"oauth_version" : OAuthVersion }
+                                  ];
+
     NSString* signatureBaseString = [ self signatureBaseString: HTTPMethod
                                                        baseURL: baseURL
-                                             requestParameters: @[ @{ @"oauth_callback" : OAuthCallback }
-                                                                 , @{ @"oauth_consumer_key" : OAuthConsumerKey }
-                                                                 , @{ @"oauth_nonce" : OAuthNonce }
-                                                                 , @{ @"oauth_signature_method" : OAuthSignatureMethod }
-                                                                 , @{ @"oauth_timestamp" : OAuthTimestamp }
-                                                                 , @{ @"oauth_version" : OAuthVersion }
-                                                                 ] ];
+                                             requestParameters: requestParameters ];
 
     NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
                                                           encoding: NSUTF8StringEncoding
@@ -274,21 +291,7 @@
     OAuthSignature = [ self signWithHMACSHA1: signatureBaseString signingKey: signingKey ];
     OAuthSignature = [ self TG_percentEncodeString: OAuthSignature ];
 
-    NSString* authorizationHeader = [ NSString stringWithFormat: @"OAuth "
-                                                                  "oauth_callback=\"%@\", "
-                                                                  "oauth_consumer_key=\"%@\", "
-                                                                  "oauth_nonce=\"%@\", "
-                                                                  "oauth_signature=\"%@\", "
-                                                                  "oauth_signature_method=\"%@\", "
-                                                                  "oauth_timestamp=\"%@\", "
-                                                                  "oauth_version=\"%@\""
-                                                                 , OAuthCallback
-                                                                 , OAuthConsumerKey
-                                                                 , OAuthNonce
-                                                                 , OAuthSignature
-                                                                 , OAuthSignatureMethod
-                                                                 , OAuthTimestamp
-                                                                 , OAuthVersion ];
+    NSString* authorizationHeader = [ self authorizationHeaders: [ requestParameters arrayByAddingObject: @{ @"oauth_signature" : OAuthSignature } ] ];
 
     NSMutableURLRequest* tokenRequest = [ NSMutableURLRequest requestWithURL: baseURL ];
     [ tokenRequest setHTTPMethod: @"POST" ];
@@ -306,10 +309,89 @@
 
                     NSMutableString* authorizePath = [ NSMutableString stringWithString: @"https://api.twitter.com/oauth/authorize?" ];
                     [ authorizePath appendString: token ];
+                    [ authorizePath appendString: @"&force_login=1&screen_name=@NSTongG" ];
 
                     NSURL* authorizeURL = [ NSURL URLWithString: authorizePath ];
                     [ [ NSWorkspace sharedWorkspace ] openURL: authorizeURL ];
-                    NSLog( @"%@", authorizeURL );
+                    [ self.requestTokenLabel setStringValue: [ authorizeURL absoluteString ] ];
+                    }
+                }
+            else
+                [ self performSelectorOnMainThread: @selector( presentError: ) withObject: error waitUntilDone: YES ];
+            } ];
+
+    [ self.dataTask resume ];
+    }
+
+- ( IBAction ) accessTokenAction: ( id )_Sender
+    {
+    NSURL* baseURL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/access_token" ];
+
+    NSString* PINCode = [ self.PINField stringValue ];
+
+    NSString* requestURLPath = self.requestTokenLabel.stringValue;
+    NSArray* components = [ requestURLPath componentsSeparatedByString: @"&" ];
+
+    NSMutableString* requestToken = nil;
+    NSMutableString* requestTokenSecret = nil;
+    for ( int _Index = 0; _Index < 2; _Index++ )
+        {
+        NSArray* subComponents = [ components[ _Index ] componentsSeparatedByString: @"=" ];
+
+        if ( _Index == 0 )
+            requestToken = subComponents.lastObject;
+        else if ( _Index == 1 )
+            requestTokenSecret = subComponents.lastObject;
+        }
+
+    NSString* HTTPMethod = @"POST";
+    NSString* OAuthCallback = @"oob";
+    NSString* OAuthConsumerKey = @"hgHSOcN9Qc4S0W3MXykn7ajUi";
+    NSString* OAuthNonce = [ self nonce ];
+    NSString* OAuthRequestToken = requestToken;
+    NSString* OAuthSignatureMethod = @"HMAC-SHA1";
+    NSString* OAuthTimestamp = [ self timestamp ];
+    NSString* OAuthPINCode = PINCode;
+    NSString* OAuthVersion = @"1.0";
+
+    NSArray* requestParameters = @[ @{ @"oauth_callback" : OAuthCallback }
+                                  , @{ @"oauth_consumer_key" : OAuthConsumerKey }
+                                  , @{ @"oauth_nonce" : OAuthNonce }
+                                  , @{ @"oauth_signature_method" : OAuthSignatureMethod }
+                                  , @{ @"oauth_timestamp" : OAuthTimestamp }
+                                  , @{ @"oauth_token" : OAuthRequestToken }
+                                  , @{ @"oauth_verifier" : OAuthPINCode }
+                                  , @{ @"oauth_version" : OAuthVersion }
+                                  ];
+
+    NSString* signatureBaseString = [ self signatureBaseString: HTTPMethod
+                                                       baseURL: baseURL
+                                             requestParameters: requestParameters ];
+
+    NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
+                                                          encoding: NSUTF8StringEncoding
+                                                             error: nil ];
+    NSString* OAuthSignature = nil;
+    NSMutableString* signingKey = [ NSMutableString stringWithFormat: @"%@&%@", consumerSecret, requestTokenSecret ];
+    OAuthSignature = [ self signWithHMACSHA1: signatureBaseString signingKey: signingKey ];
+    OAuthSignature = [ self TG_percentEncodeString: OAuthSignature ];
+
+    NSString* authorizationHeader = [ self authorizationHeaders: [ requestParameters arrayByAddingObject: @{ @"oauth_signature" : OAuthSignature } ] ];
+
+    NSMutableURLRequest* tokenRequest = [ NSMutableURLRequest requestWithURL: baseURL ];
+    [ tokenRequest setHTTPMethod: @"POST" ];
+    [ tokenRequest setValue: authorizationHeader forHTTPHeaderField: @"Authorization" ];
+    self.dataTask = [ self.defaultSession dataTaskWithRequest: tokenRequest
+                                            completionHandler:
+        ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
+            {
+            NSError* error = nil;
+            if ( !error )
+                {
+                if ( _Body.length )
+                    {
+                    NSString* token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
+                    [ self.accessTokenLabel setStringValue: token ];
                     }
                 }
             else

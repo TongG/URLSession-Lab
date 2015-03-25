@@ -74,6 +74,8 @@
 
 @property ( unsafe_unretained ) IBOutlet NSTextField* signingKeyField;
 @property ( unsafe_unretained ) IBOutlet NSTextField* PINField;
+@property ( unsafe_unretained ) IBOutlet NSTextField* requestTokenLabel;
+@property ( unsafe_unretained ) IBOutlet NSTextField* accessTokenLabel;
 - ( IBAction ) signWithHMSCSHA1: ( id )_Sender;
 
 @end // USLMainWindowController
