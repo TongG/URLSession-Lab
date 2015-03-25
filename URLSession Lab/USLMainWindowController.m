@@ -181,24 +181,138 @@
     [ self.dataTask cancel ];
     }
 
+- ( NSString* ) TG_percentEncodeString: ( NSString* )_String
+    {
+    NSArray* reservedChars = @[ @"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9"
+
+                              , @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M"
+                              , @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"
+
+                              , @"a", @"b", @"c", @"d", @"e", @"f", @"g", @"h", @"i", @"j", @"k", @"l", @"m"
+                              , @"n", @"o", @"p", @"q", @"r", @"s", @"t", @"u", @"v", @"w", @"x", @"y", @"z"
+
+                              , @"-", @".", @"_", @"~"
+                              ];
+
+    NSMutableString* percentEncodedString = [ NSMutableString string ];
+    for ( int _Index = 0; _Index < _String.length; _Index++ )
+        {
+        NSString* charElem = [ _String substringWithRange: NSMakeRange( _Index, 1 ) ];
+
+        if ( [ reservedChars containsObject: charElem ] )
+            [ percentEncodedString appendString: charElem ];
+        else
+            {
+            char const* UTF8Char = [ charElem UTF8String ];
+            NSMutableString* percentEncodedChar = [ NSMutableString stringWithString: @"%" ];
+            [ percentEncodedChar appendString: [ NSString stringWithFormat: @"%x", *UTF8Char ] ];
+            percentEncodedChar = [ percentEncodedChar.uppercaseString mutableCopy ];
+
+            [ percentEncodedString appendString: percentEncodedChar ];
+            }
+        }
+
+    return percentEncodedString;
+
+    }
+
+- ( NSString* ) TG_percentEncodeURL: ( NSURL* )_URL
+    {
+    NSString* absoluteString = [ _URL absoluteString ];
+    return [ self TG_percentEncodeString: absoluteString ];
+    }
+
 - ( IBAction ) requestTwitterTokenAction: ( id )_Sender
     {
+#if 1
     NSURL* URL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
     NSMutableURLRequest* tokenRequest = [ NSMutableURLRequest requestWithURL: URL ];
-    [ tokenRequest setAllHTTPHeaderFields: @{ @"Authorization" : @"OAuth oauth_consumer_key=\"hgHSOcN9Qc4S0W3MXykn7ajUi\", oauth_nonce=\"kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg1997787\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"1427115174\", oauth_version=\"1.0\"" } ];
+
+    NSString* HTTPMethod = @"POST";
+    NSURL* baseURL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
+    NSString* OAuthCallback = @"oob";
+    NSString* OAuthConsumerKey = @"hgHSOcN9Qc4S0W3MXykn7ajUi";
+    NSString* OAuthNonce = [ self nonce ];
+    NSString* OAuthSignature = nil;
+    NSString* OAuthSignatureMethod = @"HMAC-SHA1";
+    NSString* OAuthTimestamp = [ self timestamp ];
+    NSString* OAuthVersion = @"1.0";
+
+    NSMutableString* signatureBaseString = [ NSMutableString stringWithString: HTTPMethod ];
+    [ signatureBaseString appendString: @"&" ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeURL: baseURL ] ];
+    [ signatureBaseString appendString: @"&" ];
+
+    [ signatureBaseString appendString: @"oauth_callback" ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthCallback ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
+
+    [ signatureBaseString appendString: @"oauth_consumer_key" ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthConsumerKey ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
+
+    [ signatureBaseString appendString: @"oauth_nonce" ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthNonce ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
+
+    [ signatureBaseString appendString: @"oauth_signature_method" ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthSignatureMethod ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
+
+    [ signatureBaseString appendString: @"oauth_timestamp" ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthTimestamp ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
+
+    [ signatureBaseString appendString: @"auth_version" ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"=" ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: OAuthVersion ] ];
+    [ signatureBaseString appendString: [ self TG_percentEncodeString: @"&" ] ];
+
+    NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
+                                                          encoding: NSUTF8StringEncoding
+                                                             error: nil ];
+
+    NSMutableString* signingKey = [ NSMutableString stringWithFormat: @"%@&", consumerSecret ];
+    OAuthSignature = [ self signWithHMACSHA1: signatureBaseString signingKey: signingKey ];
+    OAuthSignature = [ self TG_percentEncodeString: OAuthSignature ];
+
+    [ tokenRequest setAllHTTPHeaderFields:
+        @{ @"Authorization" : [ NSString stringWithFormat: @"OAuth "
+                                                            "oauth_callback=\"%@\", "
+                                                            "oauth_consumer_key=\"%@\", "
+                                                            "oauth_nonce=\"%@\", "
+                                                            "oauth_signature=\"%@\", "
+                                                            "oauth_signature_method=\"%@\", "
+                                                            "oauth_timestamp=\"%@\", "
+                                                            "oauth_version=\"%@\""
+                                                         , OAuthCallback
+                                                         , OAuthConsumerKey
+                                                         , OAuthNonce
+                                                         , OAuthSignature
+                                                         , OAuthSignatureMethod
+                                                         , OAuthTimestamp
+                                                         , OAuthVersion ] } ];
+
     self.dataTask = [ self.defaultSession dataTaskWithRequest: tokenRequest
                                             completionHandler:
         ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
             {
             NSError* error = nil;
-//            NSArray* JSON = [ NSJSONSerialization JSONObjectWithData: _Body options: 0 error: &error ];
+            NSArray* JSON = [ NSJSONSerialization JSONObjectWithData: _Body options: 0 error: &error ];
             if ( !error )
+//                NSLog( @"JSON: %@", JSON );
                 NSLog( @"Request Token: %@", [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ]);
             else
                 [ self performSelectorOnMainThread: @selector( presentError: ) withObject: error waitUntilDone: YES ];
             } ];
 
     [ self.dataTask resume ];
+#endif
     }
 
 #pragma mark Download Task

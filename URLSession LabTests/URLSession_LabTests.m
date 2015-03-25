@@ -93,4 +93,9 @@
     NSURLSession* copy2 = [ downloadSession copy ];
     }
 
+- ( void ) testPercentEncoding
+    {
+
+    }
+
 @end
