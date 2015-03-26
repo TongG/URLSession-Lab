@@ -36,6 +36,12 @@
 // prefixWindowController class
 @implementation URLLabWindowController
 
+@synthesize sendDMButton;
+@synthesize DMTextField;
+@synthesize recipientField;
+
+@synthesize outputTextView;
+
 #pragma mark Initializers
 + ( id ) labWindowController
     {
@@ -55,7 +61,13 @@
 #pragma mark Conforms <NSNibAwaking> protocol
 - ( void ) awakeFromNib
     {
-    // TODO:
+    
+    }
+
+#pragma mark IBActions
+- ( IBAction ) sendDMAction: ( id )_Sender
+    {
+    
     }
 
 @end // URLLabWindowController

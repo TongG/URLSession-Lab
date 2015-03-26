@@ -105,6 +105,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83AE19CA1AC4443C0059AC11 /* Lab Window */ = {
+			isa = PBXGroup;
+			children = (
+				83AE19C71AC43E900059AC11 /* USLLabWindowController.h */,
+				83AE19C81AC43E900059AC11 /* USLLabWindowController.m */,
+				83AE19C51AC43E730059AC11 /* USLLabWindow.xib */,
+			);
+			name = "Lab Window";
+			sourceTree = "<group>";
+		};
 		83C01DF41ABAAB4D00CADA46 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				835807A11ABB3D0A00BCE11A /* URLSession Lab.entitlements */,
+				83AE19CA1AC4443C0059AC11 /* Lab Window */,
 				83C01E511ABB337600CADA46 /* Main Window */,
 				83C01E501ABB335100CADA46 /* Preferences Panel */,
 				83C01E071ABAAB4D00CADA46 /* Supporting Files */,
@@ -224,9 +235,6 @@
 				83C01E341ABAF4E300CADA46 /* USLMainWindowController.h */,
 				83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */,
 				83C01E371ABAF57300CADA46 /* USLMainWindow.xib */,
-				83AE19C51AC43E730059AC11 /* USLLabWindow.xib */,
-				83AE19C71AC43E900059AC11 /* USLLabWindowController.h */,
-				83AE19C81AC43E900059AC11 /* USLLabWindowController.m */,
 			);
 			name = "Main Window";
 			sourceTree = "<group>";

@@ -36,7 +36,16 @@
 // URLLabWindowController class
 @interface URLLabWindowController : NSWindowController
 
+@property ( unsafe_unretained ) IBOutlet NSButton* sendDMButton;
+@property ( unsafe_unretained ) IBOutlet NSTextField* DMTextField;
+@property ( unsafe_unretained ) IBOutlet NSTextField* recipientField;
+
+@property ( unsafe_unretained ) IBOutlet NSTextView* outputTextView;
+
 + ( id ) labWindowController;
+
+#pragma mark IBActions
+- ( IBAction ) sendDMAction: ( id )_Sender;
 
 @end // URLLabWindowController
 
