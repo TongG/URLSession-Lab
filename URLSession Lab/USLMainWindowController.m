@@ -32,6 +32,7 @@
  ****************************************************************************/
 
 #import "USLMainWindowController.h"
+#import "USLLabWindowController.h"
 
 // USLMainWindowController class
 @implementation USLMainWindowController
@@ -429,6 +430,14 @@
             {
             self.resumeData = _ResumeData;
             } ];
+    }
+
+- ( IBAction ) showLabWindow: ( id )_Sender
+    {
+    if ( !self.labWindowController )
+        self.labWindowController = [ URLLabWindowController labWindowController ];
+
+    [ self.labWindowController showWindow: self ];
     }
 
 #import <CommonCrypto/CommonHMAC.h>

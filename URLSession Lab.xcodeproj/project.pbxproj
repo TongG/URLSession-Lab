@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83AE19C61AC43E730059AC11 /* USLLabWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AE19C51AC43E730059AC11 /* USLLabWindow.xib */; };
+		83AE19C91AC43E900059AC11 /* USLLabWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19C81AC43E900059AC11 /* USLLabWindowController.m */; };
 		83C01E011ABAAB4D00CADA46 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C01E001ABAAB4D00CADA46 /* Cocoa.framework */; };
 		83C01E0B1ABAAB4D00CADA46 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83C01E091ABAAB4D00CADA46 /* InfoPlist.strings */; };
 		83C01E0D1ABAAB4D00CADA46 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C01E0C1ABAAB4D00CADA46 /* main.m */; };
@@ -43,6 +45,9 @@
 
 /* Begin PBXFileReference section */
 		835807A11ABB3D0A00BCE11A /* URLSession Lab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "URLSession Lab.entitlements"; sourceTree = "<group>"; };
+		83AE19C51AC43E730059AC11 /* USLLabWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = USLLabWindow.xib; sourceTree = "<group>"; };
+		83AE19C71AC43E900059AC11 /* USLLabWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USLLabWindowController.h; sourceTree = "<group>"; };
+		83AE19C81AC43E900059AC11 /* USLLabWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USLLabWindowController.m; sourceTree = "<group>"; };
 		83C01DFD1ABAAB4D00CADA46 /* URLSession Lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "URLSession Lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C01E001ABAAB4D00CADA46 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		83C01E031ABAAB4D00CADA46 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -219,6 +224,9 @@
 				83C01E341ABAF4E300CADA46 /* USLMainWindowController.h */,
 				83C01E351ABAF4E300CADA46 /* USLMainWindowController.m */,
 				83C01E371ABAF57300CADA46 /* USLMainWindow.xib */,
+				83AE19C51AC43E730059AC11 /* USLLabWindow.xib */,
+				83AE19C71AC43E900059AC11 /* USLLabWindowController.h */,
+				83AE19C81AC43E900059AC11 /* USLLabWindowController.m */,
 			);
 			name = "Main Window";
 			sourceTree = "<group>";
@@ -310,6 +318,7 @@
 				83C01E0B1ABAAB4D00CADA46 /* InfoPlist.strings in Resources */,
 				83C01E381ABAF57300CADA46 /* USLMainWindow.xib in Resources */,
 				83C01E471ABB1D4200CADA46 /* README.md in Resources */,
+				83AE19C61AC43E730059AC11 /* USLLabWindow.xib in Resources */,
 				83C01E191ABAAB4D00CADA46 /* Images.xcassets in Resources */,
 				83C01E4A1ABB1E0700CADA46 /* USLPreferencesPanelController.xib in Resources */,
 				83C01E111ABAAB4D00CADA46 /* Credits.rtf in Resources */,
@@ -337,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83AE19C91AC43E900059AC11 /* USLLabWindowController.m in Sources */,
 				83C01E461ABB1D4200CADA46 /* MASPreferencesWindowController.m in Sources */,
 				83C01E0D1ABAAB4D00CADA46 /* main.m in Sources */,
 				83C01E4F1ABB1EEC00CADA46 /* USLCacheTabController.m in Sources */,

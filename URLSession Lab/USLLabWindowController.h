@@ -33,58 +33,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class URLLabWindowController;
+// URLLabWindowController class
+@interface URLLabWindowController : NSWindowController
 
-// USLMainWindowController class
-@interface USLMainWindowController : NSWindowController < NSURLSessionDelegate
-                                                        , NSURLSessionTaskDelegate
-                                                        , NSURLSessionDataDelegate
-                                                        , NSURLSessionDownloadDelegate
-                                                        >
++ ( id ) labWindowController;
 
-@property ( unsafe_unretained ) IBOutlet NSTextField* URLField;
-@property ( unsafe_unretained ) IBOutlet NSButton* goButton;
-
-@property ( unsafe_unretained ) IBOutlet NSButton* requestTwitterToken;
-
-@property ( retain ) NSURLSessionDataTask* dataTask;
-@property ( retain ) NSURLSessionDownloadTask* downloadTask;
-
-@property ( copy ) NSURLSession* backgroundSession;
-@property ( copy ) NSURLSession* defaultSession;
-@property ( copy ) NSURLSession* ephemeralSession;
-
-@property ( retain ) NSMutableData* receivedData;
-
-@property ( retain ) NSMutableDictionary* completionHandlerDictionary;
-
-@property ( retain ) URLLabWindowController* labWindowController;
-
-+ ( id ) mainWindowController;
-
-#pragma mark Data Task
-- ( IBAction ) goAction: ( id )_Sender;
-- ( IBAction ) pauseAction: ( id )_Sender;
-- ( IBAction ) resumeAction: ( id )_Sender;
-- ( IBAction ) stopAction: ( id )_Sender;
-
-#pragma mark Download Task
-@property ( retain ) NSData* resumeData;
-
-- ( IBAction ) downloadAction: ( id )_Sender;
-- ( IBAction ) pauseDownloadAction: ( id )_Sender;
-- ( IBAction ) resumeDownloadAction: ( id )_Sender;
-- ( IBAction ) stopDownloadAction: ( id )_Sender;
-
-@property ( unsafe_unretained ) IBOutlet NSTextField* signingKeyField;
-@property ( unsafe_unretained ) IBOutlet NSTextField* PINField;
-@property ( unsafe_unretained ) IBOutlet NSTextField* requestTokenLabel;
-@property ( unsafe_unretained ) IBOutlet NSTextField* accessTokenLabel;
-- ( IBAction ) signWithHMSCSHA1: ( id )_Sender;
-
-- ( IBAction ) showLabWindow: ( id )_Sender;
-
-@end // USLMainWindowController
+@end // URLLabWindowController
 
 //////////////////////////////////////////////////////////////////////////////
 
