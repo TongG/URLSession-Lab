@@ -21,9 +21,16 @@
 - ( void ) awakeFromNib
     {
     NSString* cachePath = [ NSTemporaryDirectory() stringByAppendingString: @"URLSessionLabCaches" ];
-    NSURLCache* globalCache = [ [ [ NSURLCache alloc ] initWithMemoryCapacity: 20 * 1024
-                                                                 diskCapacity: 10 * 1024 * 1024
-                                                                     diskPath: cachePath ] autorelease ];
+    NSURLCache* globalCache = nil;
+#if !__has_feature( objc_arc )
+    globalCache = [ [ [ NSURLCache alloc ] initWithMemoryCapacity: 20 * 1024
+                                                     diskCapacity: 10 * 1024 * 1024
+                                                         diskPath: cachePath ] autorelease ];
+#else
+    globalCache = [ [ NSURLCache alloc ] initWithMemoryCapacity: 20 * 1024
+                                                   diskCapacity: 10 * 1024 * 1024
+                                                       diskPath: cachePath ];
+#endif
     [ NSURLCache setSharedURLCache: globalCache ];
 
     self.mainWindowController = [ USLMainWindowController mainWindowController ];
@@ -40,8 +47,13 @@
     dispatch_once( &onceToken
                  , ^( void )
                     {
+                #if !__has_feature( objc_arc )
                     self.preferencesWindowController =
                         [ [ [ MASPreferencesWindowController alloc ] initWithViewControllers: @[ [ [ [ USLCacheTabController alloc ] init ] autorelease ] ] ] autorelease ];
+                #else
+                    self.preferencesWindowController =
+                        [ [ MASPreferencesWindowController alloc ] initWithViewControllers: @[ [ [ USLCacheTabController alloc ] init ] ] ];
+                #endif
                     } );
 
     [ self.preferencesWindowController showWindow: self ];

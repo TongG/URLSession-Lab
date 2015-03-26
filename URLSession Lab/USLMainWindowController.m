@@ -48,7 +48,11 @@
 #pragma mark Initializers
 + ( id ) mainWindowController
     {
+#if !__has_feature( objc_arc )
     return [ [ [ [ self class ] alloc ] init ] autorelease ];
+#else
+    return [ [ [ self class ] alloc ] init ];
+#endif
     }
 
 - ( id ) init
@@ -78,9 +82,16 @@
      */
     NSString* cachePath = [ NSHomeDirectory() stringByAppendingString: @"Caches" ];
 
-    NSURLCache* caches = [ [ [ NSURLCache alloc ] initWithMemoryCapacity: 20 * 1024
-                                                            diskCapacity: 10 * powl( 1024, 2 )
-                                                                diskPath: cachePath ] autorelease ];
+    NSURLCache* caches = nil;
+#if !__has_feature( objc_arc )
+    caches = [ [ [ NSURLCache alloc ] initWithMemoryCapacity: 20 * 1024
+                                                diskCapacity: 10 * powl( 1024, 2 )
+                                                    diskPath: cachePath ] autorelease ];
+#else
+    caches = [ [ NSURLCache alloc ] initWithMemoryCapacity: 20 * 1024
+                                              diskCapacity: 10 * powl( 1024, 2 )
+                                                  diskPath: cachePath ];
+#endif
     [ defaultConfig setURLCache: caches ];
     [ defaultConfig setRequestCachePolicy: NSURLRequestUseProtocolCachePolicy ];
 
@@ -127,7 +138,6 @@
     didFinishDownloadingToURL: ( NSURL* )_Location
     {
     NSURLRequest* request = _DownloadTask.currentRequest;
-    NSURLSessionConfiguration* configuration = _Session.configuration;
 
     fprintf( stdout, "\n\n============ Completed! ==========\n" );
     NSLog( @"Request: %@", request );
@@ -241,7 +251,11 @@
         }
 
     [ signatureBaseString deleteCharactersInRange: NSMakeRange( signatureBaseString.length - 3, 3 ) ];
+#if !__has_feature( objc_arc )
     return [ [ signatureBaseString copy ] autorelease ];
+#else
+    return [ signatureBaseString copy ];
+#endif
     }
 
 - ( NSString* ) authorizationHeaders: ( NSArray* )_RequestParams
@@ -255,8 +269,11 @@
         }
 
     [ authorizationHeader deleteCharactersInRange: NSMakeRange( authorizationHeader.length - 1, 1 ) ];
-
+#if !__has_feature( objc_arc )
     return [ [ authorizationHeader copy ] autorelease ];
+#else
+    return [ authorizationHeader copy ];
+#endif
     }
 
 - ( IBAction ) requestTokenAction: ( id )_Sender
@@ -306,8 +323,12 @@
                 {
                 if ( _Body.length )
                     {
-                    NSString* token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
-
+                    NSString* token = nil;
+                #if !__has_feature( objc_arc )
+                    token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
+                #else
+                    token = [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ];
+                #endif
                     NSMutableString* authorizePath = [ NSMutableString stringWithString: @"https://api.twitter.com/oauth/authorize?" ];
                     [ authorizePath appendString: token ];
                     [ authorizePath appendString: @"&force_login=1&screen_name=@NSTongG" ];
@@ -391,7 +412,12 @@
                 {
                 if ( _Body.length )
                     {
-                    NSString* token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
+                    NSString* token = nil;
+                #if !__has_feature( objc_arc )
+                    token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
+                #else
+                    token = [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ];
+                #endif
                     [ self.accessTokenLabel setStringValue: token ];
                     }
                 }

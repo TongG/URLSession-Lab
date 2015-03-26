@@ -45,7 +45,11 @@
 #pragma mark Initializers
 + ( id ) labWindowController
     {
+#if !__has_feature( objc_arc )
     return [ [ [ [ self class ] alloc ] init ] autorelease ];
+#else
+    return [ [ [ self class ] alloc ] init ];
+#endif
     }
 
 - ( id ) init
@@ -67,7 +71,7 @@
 #pragma mark IBActions
 - ( IBAction ) sendDMAction: ( id )_Sender
     {
-    
+
     }
 
 @end // URLLabWindowController
