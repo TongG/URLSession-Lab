@@ -32,7 +32,6 @@
  ****************************************************************************/
 
 #import "USLMainWindowController.h"
-#import "USLLabWindowController.h"
 
 // USLMainWindowController class
 @implementation USLMainWindowController
@@ -44,6 +43,12 @@
 @synthesize completionHandlerDictionary;
 
 @synthesize resumeData = _resumeData;
+
+@synthesize sendDMButton;
+@synthesize DMTextField;
+@synthesize recipientField;
+
+@synthesize outputTextView;
 
 #pragma mark Initializers
 + ( id ) mainWindowController
@@ -428,14 +433,195 @@
     [ self.dataTask resume ];
     }
 
+int static count = 1;
+- ( IBAction ) sendDMAction: ( id )_Sender
+    {
+    count++;
+    NSString* accessTokenPath = self.accessTokenLabel.stringValue;
+    NSArray* components = [ accessTokenPath componentsSeparatedByString: @"&" ];
+
+    NSMutableString* accessToken = nil;
+    NSMutableString* accessTokenSecret = nil;
+    for ( int _Index = 0; _Index < 2; _Index++ )
+        {
+        NSArray* subComponents = [ components[ _Index ] componentsSeparatedByString: @"=" ];
+
+        if ( _Index == 0 )
+            accessToken = subComponents.lastObject;
+        else if ( _Index == 1 )
+            accessTokenSecret = subComponents.lastObject;
+        }
+
+    NSString* HTTPMethod = @"POST";
+    NSString* OAuthAccessToken = accessToken;
+    NSString* OAuthConsumerKey = @"hgHSOcN9Qc4S0W3MXykn7ajUi";
+    NSString* OAuthNonce = [ self nonce ];
+    NSString* OAuthSignatureMethod = @"HMAC-SHA1";
+    NSString* OAuthTimestamp = [ self timestamp ];
+    NSString* OAuthVersion = @"1.0";
+
+    NSString* recipientName = self.recipientField.stringValue;
+    NSString* DMText = self.DMTextField.stringValue;
+
+    NSArray* requestParameters = nil;
+
+    if ( count % 2 == 0 )
+        {
+        requestParameters = @[ @{ @"oauth_consumer_key" : OAuthConsumerKey }
+                             , @{ @"oauth_nonce" : OAuthNonce }
+                             , @{ @"oauth_signature_method" : OAuthSignatureMethod }
+                             , @{ @"oauth_timestamp" : OAuthTimestamp }
+                             , @{ @"oauth_token" : OAuthAccessToken }
+                             , @{ @"oauth_version" : OAuthVersion }
+                             , @{ @"text" : DMText }
+                             , @{ @"screen_name" : recipientName }
+                             ];
+        }
+    else
+        {
+        requestParameters = @[ @{ @"oauth_consumer_key" : OAuthConsumerKey }
+                             , @{ @"oauth_nonce" : OAuthNonce }
+                             , @{ @"oauth_signature_method" : OAuthSignatureMethod }
+                             , @{ @"oauth_timestamp" : OAuthTimestamp }
+                             , @{ @"oauth_token" : OAuthAccessToken }
+                             , @{ @"oauth_version" : OAuthVersion }
+                             , @{ @"screen_name" : recipientName }
+                             , @{ @"text" : DMText }
+                             ];
+        }
+
+    NSURL* baseURL = [ NSURL URLWithString: [ NSString stringWithFormat: @"https://api.twitter.com/1.1/direct_messages/new.json" ] ];
+    NSString* signatureBaseString = [ self signatureBaseString: HTTPMethod
+                                                       baseURL: baseURL
+                                             requestParameters: requestParameters ];
+
+    NSString* consumerSecret = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Pictures/consumer_secret.txt" ]
+                                                          encoding: NSUTF8StringEncoding
+                                                             error: nil ];
+    NSString* OAuthSignature = nil;
+    NSMutableString* signingKey = [ NSMutableString stringWithFormat: @"%@&%@", consumerSecret, accessTokenSecret ];
+    OAuthSignature = [ self signWithHMACSHA1: signatureBaseString signingKey: signingKey ];
+    OAuthSignature = [ self TG_percentEncodeString: OAuthSignature ];
+
+    NSMutableArray* authHeaderParams = [ NSMutableArray array ];
+    for ( NSDictionary* _Param in requestParameters )
+        {
+        if ( ![ _Param.allKeys.firstObject isEqualToString: @"screen_name" ]
+                && ![ _Param.allKeys.firstObject isEqualToString: @"text" ] )
+            [ authHeaderParams addObject: _Param ];
+        }
+
+    [ authHeaderParams addObject:  @{ @"oauth_signature" : OAuthSignature } ];
+
+    NSString* authorizationHeader = [ self authorizationHeaders: authHeaderParams ];
+
+    NSMutableURLRequest* postDMRequest = [ NSMutableURLRequest requestWithURL: baseURL ];
+    NSString* bodyContent = [ NSString stringWithFormat: @"screen_name=%@&text=%@", recipientName, [ self TG_percentEncodeString: DMText ] ];
+    NSData* bodyData = [ bodyContent dataUsingEncoding: NSUTF8StringEncoding ];
+    [ postDMRequest setHTTPMethod: @"POST" ];
+    [ postDMRequest setValue: @"application/x-www-form-urlencoded" forHTTPHeaderField: @"Content-Type" ];
+    [ postDMRequest setValue: [ NSString stringWithFormat: @"%u", ( unsigned int )[ bodyData length ] ] forHTTPHeaderField: @"Content-Length" ];
+    [ postDMRequest setValue: authorizationHeader forHTTPHeaderField: @"Authorization" ];
+    NSLog( @"%@", postDMRequest.allHTTPHeaderFields );
+    [ postDMRequest setHTTPBody: bodyData ];
+    self.dataTask = [ self.defaultSession dataTaskWithRequest: postDMRequest
+                                            completionHandler:
+        ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
+            {
+            NSError* error = nil;
+            if ( !error )
+                {
+                if ( _Body.length )
+                    {
+                    NSString* response = nil;
+                #if !__has_feature( objc_arc )
+                    token = [ [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ] autorelease ];
+                #else
+                    response = [ [ NSString alloc ] initWithData: _Body encoding: NSUTF8StringEncoding ];
+                #endif
+                    [ self.outputTextView insertText: response ];
+                    NSLog( @"Response: %@", response );
+                    }
+                }
+            else
+                [ self performSelectorOnMainThread: @selector( presentError: ) withObject: error waitUntilDone: YES ];
+            } ];
+
+    [ self.dataTask resume ];
+    }
+
 #pragma mark Download Task
 - ( IBAction ) downloadAction: ( id )_Sender
     {
     NSString* URLString = self.URLField.stringValue;
     NSURL* URL = [ NSURL URLWithString: URLString ];
 
+    NSURLRequest* downloadRequest = [ NSURLRequest requestWithURL: URL ];
+
+#if 0
+    [ NSURLConnection sendAsynchronousRequest: downloadRequest
+                                        queue: [ NSOperationQueue mainQueue ]
+                            completionHandler:
+        ^( NSURLResponse* _Response, NSData* _Data, NSError* _Error )
+            {
+            if ( !_Error )
+                {
+
+                }
+            else
+                [ self presentError: _Error ];
+            } ];
+#endif
+
+#if 1
+    [ NSURLConnection connectionWithRequest: downloadRequest delegate: self ];
+#endif
+
+#if 0
     self.downloadTask = [ self.defaultSession downloadTaskWithURL: URL ];
     [ self.downloadTask resume ];
+#endif
+    }
+
+- ( void ) connection: ( NSURLConnection* )_URLConnection
+     didFailWithError: ( NSError* )_Error
+    {
+    if ( _Error )
+        [ self presentError: _Error ];
+    }
+
+- ( void ) connection: ( NSURLConnection* )_URLConnection
+   didReceiveResponse: ( NSURLResponse* )_Response
+    {
+    NSLog( @"Expected Content Length: %lld", [ _Response expectedContentLength ] );
+    NSLog( @"Suggested File Name: %@", [ _Response suggestedFilename ] );
+    NSLog( @"MIME Type: %@", [ _Response MIMEType ] );
+    NSLog( @"Text Encoding Name: %@", [ _Response textEncodingName ] );
+    NSLog( @"URL: %@", [ _Response URL ] );
+    }
+
+- ( void ) connection: ( NSURLConnection* )_URLConnection
+       didReceiveData: ( NSData* )_ReceivedData
+    {
+    NSError* error = nil;
+    NSString* dstPath = [ NSHomeDirectory() stringByAppendingString: @"/settings.html" ];
+    NSURL* dstURL = [ NSURL URLWithString: [ NSString stringWithFormat: @"file://%@", dstPath ] ];
+//    [ _ReceivedData writeToURL: dstURL options: NSDataWritingAtomic error: &error ];
+
+//    if ( !error )
+//        [ [ NSWorkspace sharedWorkspace ] openURL: dstURL ];
+//    else
+//        [ self presentError: error ];
+
+    NSLog( @"%@", _ReceivedData );
+    }
+
+- ( NSURLRequest* ) connection: ( NSURLConnection* )_URLConnection
+               willSendRequest: ( NSURLRequest* )_ProposedURLRequest
+              redirectResponse: ( NSURLResponse* )_RedirectResponse
+    {
+    NSLog( @"Redirect URL: %@", _ProposedURLRequest.URL );
+    return _ProposedURLRequest;
     }
 
 - ( IBAction ) pauseDownloadAction: ( id )_Sender
@@ -456,14 +642,6 @@
             {
             self.resumeData = _ResumeData;
             } ];
-    }
-
-- ( IBAction ) showLabWindow: ( id )_Sender
-    {
-    if ( !self.labWindowController )
-        self.labWindowController = [ URLLabWindowController labWindowController ];
-
-    [ self.labWindowController showWindow: self ];
     }
 
 #import <CommonCrypto/CommonHMAC.h>

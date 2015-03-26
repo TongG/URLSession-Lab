@@ -40,12 +40,17 @@
                                                         , NSURLSessionTaskDelegate
                                                         , NSURLSessionDataDelegate
                                                         , NSURLSessionDownloadDelegate
+                                                        , NSURLConnectionDelegate
+                                                        , NSURLConnectionDataDelegate
                                                         >
 
 @property ( unsafe_unretained ) IBOutlet NSTextField* URLField;
 @property ( unsafe_unretained ) IBOutlet NSButton* goButton;
-
 @property ( unsafe_unretained ) IBOutlet NSButton* requestTwitterToken;
+- ( IBAction ) goAction: ( id )_Sender;
+- ( IBAction ) pauseAction: ( id )_Sender;
+- ( IBAction ) resumeAction: ( id )_Sender;
+- ( IBAction ) stopAction: ( id )_Sender;
 
 @property ( retain ) NSURLSessionDataTask* dataTask;
 @property ( retain ) NSURLSessionDownloadTask* downloadTask;
@@ -54,6 +59,8 @@
 @property ( copy ) NSURLSession* defaultSession;
 @property ( copy ) NSURLSession* ephemeralSession;
 
+@property ( retain ) NSURLConnection* defaultConnect;
+
 @property ( retain ) NSMutableData* receivedData;
 
 @property ( retain ) NSMutableDictionary* completionHandlerDictionary;
@@ -61,12 +68,6 @@
 @property ( retain ) URLLabWindowController* labWindowController;
 
 + ( id ) mainWindowController;
-
-#pragma mark Data Task
-- ( IBAction ) goAction: ( id )_Sender;
-- ( IBAction ) pauseAction: ( id )_Sender;
-- ( IBAction ) resumeAction: ( id )_Sender;
-- ( IBAction ) stopAction: ( id )_Sender;
 
 #pragma mark Download Task
 @property ( retain ) NSData* resumeData;
@@ -82,7 +83,11 @@
 @property ( unsafe_unretained ) IBOutlet NSTextField* accessTokenLabel;
 - ( IBAction ) signWithHMSCSHA1: ( id )_Sender;
 
-- ( IBAction ) showLabWindow: ( id )_Sender;
+@property ( unsafe_unretained ) IBOutlet NSButton* sendDMButton;
+@property ( unsafe_unretained ) IBOutlet NSTextField* DMTextField;
+@property ( unsafe_unretained ) IBOutlet NSTextField* recipientField;
+@property ( unsafe_unretained ) IBOutlet NSTextView* outputTextView;
+- ( IBAction ) sendDMAction: ( id )_Sender;
 
 @end // USLMainWindowController
 

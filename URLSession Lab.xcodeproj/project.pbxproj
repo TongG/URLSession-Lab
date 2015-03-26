@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		83AE19C61AC43E730059AC11 /* USLLabWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AE19C51AC43E730059AC11 /* USLLabWindow.xib */; };
-		83AE19C91AC43E900059AC11 /* USLLabWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19C81AC43E900059AC11 /* USLLabWindowController.m */; };
 		83AE19EC1AC450710059AC11 /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19CD1AC450710059AC11 /* NSDateFormatter+STTwitter.m */; };
 		83AE19ED1AC450710059AC11 /* NSError+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19CF1AC450710059AC11 /* NSError+STTwitter.m */; };
 		83AE19EE1AC450710059AC11 /* NSString+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19D11AC450710059AC11 /* NSString+STTwitter.m */; };
@@ -57,11 +55,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		83AE1A2B1AC4AAF10059AC11 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		835807A11ABB3D0A00BCE11A /* URLSession Lab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "URLSession Lab.entitlements"; sourceTree = "<group>"; };
-		83AE19C51AC43E730059AC11 /* USLLabWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = USLLabWindow.xib; sourceTree = "<group>"; };
-		83AE19C71AC43E900059AC11 /* USLLabWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USLLabWindowController.h; sourceTree = "<group>"; };
-		83AE19C81AC43E900059AC11 /* USLLabWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USLLabWindowController.m; sourceTree = "<group>"; };
 		83AE19CC1AC450710059AC11 /* NSDateFormatter+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+STTwitter.h"; sourceTree = "<group>"; };
 		83AE19CD1AC450710059AC11 /* NSDateFormatter+STTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+STTwitter.m"; sourceTree = "<group>"; };
 		83AE19CE1AC450710059AC11 /* NSError+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+STTwitter.h"; sourceTree = "<group>"; };
@@ -150,16 +157,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		83AE19CA1AC4443C0059AC11 /* Lab Window */ = {
-			isa = PBXGroup;
-			children = (
-				83AE19C71AC43E900059AC11 /* USLLabWindowController.h */,
-				83AE19C81AC43E900059AC11 /* USLLabWindowController.m */,
-				83AE19C51AC43E730059AC11 /* USLLabWindow.xib */,
-			);
-			name = "Lab Window";
-			sourceTree = "<group>";
-		};
 		83AE19CB1AC450710059AC11 /* STTwitter */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				835807A11ABB3D0A00BCE11A /* URLSession Lab.entitlements */,
-				83AE19CA1AC4443C0059AC11 /* Lab Window */,
 				83C01E511ABB337600CADA46 /* Main Window */,
 				83C01E501ABB335100CADA46 /* Preferences Panel */,
 				83C01E071ABAAB4D00CADA46 /* Supporting Files */,
@@ -341,6 +337,7 @@
 				83C01DF91ABAAB4D00CADA46 /* Sources */,
 				83C01DFA1ABAAB4D00CADA46 /* Frameworks */,
 				83C01DFB1ABAAB4D00CADA46 /* Resources */,
+				83AE1A2B1AC4AAF10059AC11 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -418,7 +415,6 @@
 				83C01E0B1ABAAB4D00CADA46 /* InfoPlist.strings in Resources */,
 				83C01E381ABAF57300CADA46 /* USLMainWindow.xib in Resources */,
 				83C01E471ABB1D4200CADA46 /* README.md in Resources */,
-				83AE19C61AC43E730059AC11 /* USLLabWindow.xib in Resources */,
 				83C01E191ABAAB4D00CADA46 /* Images.xcassets in Resources */,
 				83C01E4A1ABB1E0700CADA46 /* USLPreferencesPanelController.xib in Resources */,
 				83C01E111ABAAB4D00CADA46 /* Credits.rtf in Resources */,
@@ -452,7 +448,6 @@
 				83AE19EE1AC450710059AC11 /* NSString+STTwitter.m in Sources */,
 				83AE19F41AC450710059AC11 /* STTwitterOS.m in Sources */,
 				83AE19F51AC450710059AC11 /* STTwitterOSRequest.m in Sources */,
-				83AE19C91AC43E900059AC11 /* USLLabWindowController.m in Sources */,
 				83C01E461ABB1D4200CADA46 /* MASPreferencesWindowController.m in Sources */,
 				83C01E0D1ABAAB4D00CADA46 /* main.m in Sources */,
 				83AE19EC1AC450710059AC11 /* NSDateFormatter+STTwitter.m in Sources */,
@@ -601,6 +596,11 @@
 				CODE_SIGN_ENTITLEMENTS = "URLSession Lab/URLSession Lab.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/URLSession",
+					Lab,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "URLSession Lab/URLSession Lab-Prefix.pch";
 				INFOPLIST_FILE = "URLSession Lab/URLSession Lab-Info.plist";
@@ -616,6 +616,11 @@
 				CODE_SIGN_ENTITLEMENTS = "URLSession Lab/URLSession Lab.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/URLSession",
+					Lab,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "URLSession Lab/URLSession Lab-Prefix.pch";
 				INFOPLIST_FILE = "URLSession Lab/URLSession Lab-Info.plist";
