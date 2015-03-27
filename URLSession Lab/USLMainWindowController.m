@@ -433,8 +433,10 @@
     [ self.dataTask resume ];
     }
 
+int static count = 1;
 - ( IBAction ) sendDMAction: ( id )_Sender
     {
+    count++;
     NSString* accessTokenPath = self.accessTokenLabel.stringValue;
     NSArray* components = [ accessTokenPath componentsSeparatedByString: @"&" ];
 
@@ -459,20 +461,34 @@
     NSString* OAuthVersion = @"1.0";
 
     NSString* recipientName = self.recipientField.stringValue;
-    NSString* DMText = [ NSString stringWithContentsOfFile: [ NSHomeDirectory() stringByAppendingString: @"/Downloads/Think Different Stream.txt" ]
-                                                  encoding: NSUTF8StringEncoding
-                                                     error: nil ];
+    NSString* DMText = self.DMTextField.stringValue;
 
     NSArray* requestParameters = nil;
-    requestParameters = @[ @{ @"oauth_consumer_key" : OAuthConsumerKey }
-                         , @{ @"oauth_nonce" : OAuthNonce }
-                         , @{ @"oauth_signature_method" : OAuthSignatureMethod }
-                         , @{ @"oauth_timestamp" : OAuthTimestamp }
-                         , @{ @"oauth_token" : OAuthAccessToken }
-                         , @{ @"oauth_version" : OAuthVersion }
-                         , @{ @"screen_name" : recipientName }
-                         , @{ @"text" : DMText }
-                         ];
+
+    if ( count % 2 == 0 )
+        {
+        requestParameters = @[ @{ @"oauth_consumer_key" : OAuthConsumerKey }
+                             , @{ @"oauth_nonce" : OAuthNonce }
+                             , @{ @"oauth_signature_method" : OAuthSignatureMethod }
+                             , @{ @"oauth_timestamp" : OAuthTimestamp }
+                             , @{ @"oauth_token" : OAuthAccessToken }
+                             , @{ @"oauth_version" : OAuthVersion }
+                             , @{ @"text" : DMText }
+                             , @{ @"screen_name" : recipientName }
+                             ];
+        }
+    else
+        {
+        requestParameters = @[ @{ @"oauth_consumer_key" : OAuthConsumerKey }
+                             , @{ @"oauth_nonce" : OAuthNonce }
+                             , @{ @"oauth_signature_method" : OAuthSignatureMethod }
+                             , @{ @"oauth_timestamp" : OAuthTimestamp }
+                             , @{ @"oauth_token" : OAuthAccessToken }
+                             , @{ @"oauth_version" : OAuthVersion }
+                             , @{ @"screen_name" : recipientName }
+                             , @{ @"text" : DMText }
+                             ];
+        }
 
     NSURL* baseURL = [ NSURL URLWithString: [ NSString stringWithFormat: @"https://api.twitter.com/1.1/direct_messages/new.json" ] ];
     NSString* signatureBaseString = [ self signatureBaseString: HTTPMethod
@@ -500,14 +516,14 @@
     NSString* authorizationHeader = [ self authorizationHeaders: authHeaderParams ];
 
     NSMutableURLRequest* postDMRequest = [ NSMutableURLRequest requestWithURL: baseURL ];
-//    NSString* bodyContent = [ NSString stringWithFormat: @"screen_name=%@&text=%@", recipientName, DMText ];
-    NSInputStream* inputStream = [ NSInputStream inputStreamWithFileAtPath: [ NSHomeDirectory() stringByAppendingString: @"/Downloads/Think Different.txt" ] ];
+    NSString* bodyContent = [ NSString stringWithFormat: @"screen_name=%@&text=%@", recipientName, [ self TG_percentEncodeString: DMText ] ];
+    NSData* bodyData = [ bodyContent dataUsingEncoding: NSUTF8StringEncoding ];
     [ postDMRequest setHTTPMethod: @"POST" ];
     [ postDMRequest setValue: @"application/x-www-form-urlencoded" forHTTPHeaderField: @"Content-Type" ];
-//    [ postDMRequest setValue: [ NSString stringWithFormat: @"%u", ( unsigned int )[ bodyData length ] ] forHTTPHeaderField: @"Content-Length" ];
+    [ postDMRequest setValue: [ NSString stringWithFormat: @"%u", ( unsigned int )[ bodyData length ] ] forHTTPHeaderField: @"Content-Length" ];
     [ postDMRequest setValue: authorizationHeader forHTTPHeaderField: @"Authorization" ];
-    [ postDMRequest setHTTPBodyStream: inputStream ];
     NSLog( @"%@", postDMRequest.allHTTPHeaderFields );
+    [ postDMRequest setHTTPBody: bodyData ];
     self.dataTask = [ self.defaultSession dataTaskWithRequest: postDMRequest
                                             completionHandler:
         ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
