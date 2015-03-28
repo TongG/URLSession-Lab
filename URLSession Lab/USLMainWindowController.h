@@ -53,6 +53,7 @@
 - ( IBAction ) stopAction: ( id )_Sender;
 
 @property ( retain ) NSURLSessionDataTask* dataTask;
+@property ( retain ) NSURLSessionDataTask* uploadTask;
 @property ( retain ) NSURLSessionDownloadTask* downloadTask;
 
 @property ( copy ) NSURLSession* backgroundSession;

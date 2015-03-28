@@ -171,6 +171,21 @@
     fprintf( stdout, "===============================\n\n\n" );
     }
 
+- ( void )        URLSession: ( NSURLSession* )_URLSesson
+                        task: ( NSURLSessionTask* )_Task
+             didSendBodyData: ( int64_t )_BytesSent
+              totalBytesSent: ( int64_t )_TotalBytesSent
+    totalBytesExpectedToSend: ( int64_t )_TotalBytesExpectedToSend
+    {
+    fprintf( stdout, "\n\n=================================\n" );
+    NSLog( @"URL Session: %@", _URLSesson );
+    NSLog( @"Task: %@", _Task );
+    NSLog( @"Bytes Sent: %lld", _BytesSent );
+    NSLog( @"Total Bytes Sent: %lld", _TotalBytesSent );
+    NSLog( @"Total Bytes Expected To Sent: %lld", _TotalBytesExpectedToSend );
+    fprintf( stdout, "===============================\n\n\n" );
+    }
+
 #pragma mark Data Task
 - ( IBAction ) goAction: ( id )_Sender
     {
@@ -464,31 +479,15 @@ int static count = 1;
     NSString* DMText = self.DMTextField.stringValue;
 
     NSArray* requestParameters = nil;
-
-    if ( count % 2 == 0 )
-        {
-        requestParameters = @[ @{ @"oauth_consumer_key" : OAuthConsumerKey }
-                             , @{ @"oauth_nonce" : OAuthNonce }
-                             , @{ @"oauth_signature_method" : OAuthSignatureMethod }
-                             , @{ @"oauth_timestamp" : OAuthTimestamp }
-                             , @{ @"oauth_token" : OAuthAccessToken }
-                             , @{ @"oauth_version" : OAuthVersion }
-                             , @{ @"text" : DMText }
-                             , @{ @"screen_name" : recipientName }
-                             ];
-        }
-    else
-        {
-        requestParameters = @[ @{ @"oauth_consumer_key" : OAuthConsumerKey }
-                             , @{ @"oauth_nonce" : OAuthNonce }
-                             , @{ @"oauth_signature_method" : OAuthSignatureMethod }
-                             , @{ @"oauth_timestamp" : OAuthTimestamp }
-                             , @{ @"oauth_token" : OAuthAccessToken }
-                             , @{ @"oauth_version" : OAuthVersion }
-                             , @{ @"screen_name" : recipientName }
-                             , @{ @"text" : DMText }
-                             ];
-        }
+    requestParameters = @[ @{ @"oauth_consumer_key" : OAuthConsumerKey }
+                         , @{ @"oauth_nonce" : OAuthNonce }
+                         , @{ @"oauth_signature_method" : OAuthSignatureMethod }
+                         , @{ @"oauth_timestamp" : OAuthTimestamp }
+                         , @{ @"oauth_token" : OAuthAccessToken }
+                         , @{ @"oauth_version" : OAuthVersion }
+                         , @{ @"screen_name" : recipientName }
+                         , @{ @"text" : DMText }
+                         ];
 
     NSURL* baseURL = [ NSURL URLWithString: [ NSString stringWithFormat: @"https://api.twitter.com/1.1/direct_messages/new.json" ] ];
     NSString* signatureBaseString = [ self signatureBaseString: HTTPMethod
@@ -520,12 +519,14 @@ int static count = 1;
     NSData* bodyData = [ bodyContent dataUsingEncoding: NSUTF8StringEncoding ];
     [ postDMRequest setHTTPMethod: @"POST" ];
     [ postDMRequest setValue: @"application/x-www-form-urlencoded" forHTTPHeaderField: @"Content-Type" ];
+
     [ postDMRequest setValue: [ NSString stringWithFormat: @"%u", ( unsigned int )[ bodyData length ] ] forHTTPHeaderField: @"Content-Length" ];
     [ postDMRequest setValue: authorizationHeader forHTTPHeaderField: @"Authorization" ];
-    NSLog( @"%@", postDMRequest.allHTTPHeaderFields );
-    [ postDMRequest setHTTPBody: bodyData ];
-    self.dataTask = [ self.defaultSession dataTaskWithRequest: postDMRequest
-                                            completionHandler:
+//    NSLog( @"%@", postDMRequest.allHTTPHeaderFields );
+//    [ postDMRequest setHTTPBody: bodyData ];
+    self.uploadTask = [ self.defaultSession uploadTaskWithRequest: postDMRequest
+                                                       fromData: bodyData
+                                              completionHandler:
         ^( NSData* _Body, NSURLResponse* _Response, NSError* _Error )
             {
             NSError* error = nil;
@@ -547,7 +548,7 @@ int static count = 1;
                 [ self performSelectorOnMainThread: @selector( presentError: ) withObject: error waitUntilDone: YES ];
             } ];
 
-    [ self.dataTask resume ];
+    [ self.uploadTask resume ];
     }
 
 #pragma mark Download Task

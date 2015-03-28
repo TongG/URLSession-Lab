@@ -25,7 +25,7 @@
         <window title="URLSession Lab" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="KnK-eB-sKh">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="201" width="876" height="558"/>
+            <rect key="contentRect" x="335" y="156" width="876" height="558"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="NaR-Xf-4wB">
                 <rect key="frame" x="0.0" y="0.0" width="876" height="558"/>
@@ -262,10 +262,10 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="470" height="354"/>
-                                    <size key="maxSize" width="470" height="10000000"/>
+                                    <size key="maxSize" width="472" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="470" height="354"/>
-                                    <size key="maxSize" width="470" height="10000000"/>
+                                    <size key="maxSize" width="472" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
