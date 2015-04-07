@@ -34,6 +34,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class URLLabWindowController;
+@class STTwitterAPI;
 
 // USLMainWindowController class
 @interface USLMainWindowController : NSWindowController < NSURLSessionDelegate
@@ -44,9 +45,17 @@
                                                         , NSURLConnectionDataDelegate
                                                         >
 
+@property ( strong ) STTwitterAPI* twitterAPI;
+
+@property ( copy ) NSString* accessToken;
+@property ( copy ) NSString* accessTokenSecret;
+
 @property ( unsafe_unretained ) IBOutlet NSTextField* URLField;
 @property ( unsafe_unretained ) IBOutlet NSButton* goButton;
 @property ( unsafe_unretained ) IBOutlet NSButton* requestTwitterToken;
+
+@property ( unsafe_unretained ) IBOutlet NSView* customView;
+
 - ( IBAction ) goAction: ( id )_Sender;
 - ( IBAction ) pauseAction: ( id )_Sender;
 - ( IBAction ) resumeAction: ( id )_Sender;

@@ -32,6 +32,7 @@
  ****************************************************************************/
 
 #import "USLMainWindowController.h"
+#import "STTwitter.h"
 
 // USLMainWindowController class
 @implementation USLMainWindowController
@@ -73,6 +74,21 @@
 #pragma mark Conforms <NSNibAwaking> protocol
 - ( void ) awakeFromNib
     {
+    NSString* consumerName = @"Let There be Tweet";
+    NSString* consumerKey = @"hgHSOcN9Qc4S0W3MXykn7ajUi";
+    NSString* consumerSecret = @"hR511PtIsGtIfPwbH41BQpuNDJUZYQj5oeaPK1rQiPOqAm31D8";
+    self.twitterAPI = [ STTwitterAPI twitterAPIWithOAuthConsumerName: consumerName
+                                                         consumerKey: consumerKey
+                                                      consumerSecret: consumerSecret ];
+
+    NSTextFieldCell* textFieldCell = [ [ NSTextFieldCell alloc ] initTextCell: @"Oh Fuck!" ];
+
+    if ( [ self.customView lockFocusIfCanDraw ] )
+        {
+        [ textFieldCell drawWithFrame: NSMakeRect( 0, 0, 200, 28 ) inView: self.customView ];
+        [ self.customView unlockFocus ];
+        }
+
     self.completionHandlerDictionary = [ NSMutableDictionary dictionary ];
 
     /* Create some configuration objects. */
@@ -118,9 +134,30 @@
 
     if ( !error )
         NSLog( @"JSON: %@", JSONValue );
+    else
+        {
+        NSString* path = [ NSTemporaryDirectory() stringByAppendingString: @"/v2ex.html" ];
+        [ _DataPiece writeToFile: path atomically: YES ];
+        [ [ NSWorkspace sharedWorkspace ] openFile: path ];
+        }
 
     [ self.receivedData appendData: _DataPiece ];
     NSLog( @"%@     %lu", _DataTask, self.receivedData.length );
+    }
+
+- ( void )     URLSession: ( NSURLSession* )_URLSession
+                 dataTask: ( NSURLSessionDataTask* )_DataTask
+    didBecomeDownloadTask: ( NSURLSessionDownloadTask* )_NewDownloadTask
+    {
+
+    }
+
+- ( void ) URLSession: ( NSURLSession* )_Session
+             dataTask: ( NSURLSessionDataTask* )_DataTask
+   didReceiveResponse: ( NSURLResponse* )_Response
+    completionHandler: ( void (^)( NSURLSessionResponseDisposition _Disposition ) )_CompletionHandler
+    {
+    _CompletionHandler( NSURLSessionResponseBecomeDownload );
     }
 
 - ( void )    URLSession: ( NSURLSession* )_Session
@@ -184,6 +221,15 @@
     NSLog( @"Total Bytes Sent: %lld", _TotalBytesSent );
     NSLog( @"Total Bytes Expected To Sent: %lld", _TotalBytesExpectedToSend );
     fprintf( stdout, "===============================\n\n\n" );
+    }
+
+- ( void )          URLSession: ( NSURLSession* )_URLSession
+                          task: ( NSURLSessionTask* )_Task
+    willPerformHTTPRedirection: ( NSHTTPURLResponse* )_RedirectResponse
+                    newRequest: ( NSURLRequest* )_Request
+             completionHandler: ( void (^)( NSURLRequest* ) )_CompletionHandler
+    {
+    _CompletionHandler( _Request );
     }
 
 #pragma mark Data Task
@@ -294,6 +340,43 @@
 #else
     return [ authorizationHeader copy ];
 #endif
+    }
+
+#pragma mark STTwitter
+- ( IBAction ) requestTokenActionUsingSTTwitter: ( id )_Sender
+    {
+    [ self.twitterAPI postTokenRequest:
+        ^( NSURL* _URL, NSString* _OAuthToken )
+            {
+            NSLog( @"URL: %@", _URL );
+            NSLog( @"OAuth Token: %@", _OAuthToken );
+            [ [ NSWorkspace sharedWorkspace ] openURL: _URL ];
+            }
+        authenticateInsteadOfAuthorize: NO
+                            forceLogin: @YES
+                            screenName: @"NSTongG"
+                         oauthCallback: @"oob"
+                            errorBlock: ^( NSError* _Error ) { [ self presentError: _Error ]; } ];
+    }
+
+- ( IBAction ) fetchAccessTokenActionUsingSTTwitter: ( id )_Sender
+    {
+    [ self.twitterAPI postAccessTokenRequestWithPIN: self.PINField.stringValue
+                                       successBlock:
+        ^( NSString* _OAuthToken, NSString* _OAuthTokenSecret, NSString* _UserID, NSString* _ScreenName )
+            {
+            NSLog( @"OAuth Token: %@", _OAuthToken );
+            NSLog( @"OAuth Token Secret: %@", _OAuthTokenSecret );
+            NSLog( @"User ID: %@", _UserID );
+            NSLog( @"Screen Name: %@", _ScreenName );
+
+            [ self.accessTokenLabel setStringValue: [ NSString stringWithFormat: @"OAuth Token: %@\nOAuth Token Secret: %@"
+                                                                               , self.twitterAPI.oauthAccessToken
+                                                                               , self.twitterAPI.oauthAccessTokenSecret ] ];
+            self.accessToken = self.twitterAPI.oauthAccessToken;
+            self.accessTokenSecret = self.twitterAPI.oauthAccessTokenSecret;
+            }
+                                         errorBlock: ^( NSError* _Error ) { [ self presentError: _Error ]; } ];
     }
 
 - ( IBAction ) requestTokenAction: ( id )_Sender
@@ -446,6 +529,14 @@
             } ];
 
     [ self.dataTask resume ];
+    }
+
+- ( void )     URLSession: ( NSURLSession* )_URLSession
+                 dataTask: ( NSURLSessionDataTask* )_DataTask
+        willCacheResponse: ( NSCachedURLResponse* )_ProposedResponse
+        completionHandler: ( void (^)( NSCachedURLResponse* _CachedResponse ) )_CompletionHandler
+    {
+    NSLog( @"%@", _DataTask );
     }
 
 int static count = 1;

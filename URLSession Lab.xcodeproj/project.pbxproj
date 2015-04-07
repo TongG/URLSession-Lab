@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8377435C1AC6D99E006C372A /* USLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8377435B1AC6D99E006C372A /* USLButton.m */; };
+		837743621AC6D9BE006C372A /* USLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837743611AC6D9BE006C372A /* USLButtonCell.m */; };
 		83AE19EC1AC450710059AC11 /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19CD1AC450710059AC11 /* NSDateFormatter+STTwitter.m */; };
 		83AE19ED1AC450710059AC11 /* NSError+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19CF1AC450710059AC11 /* NSError+STTwitter.m */; };
 		83AE19EE1AC450710059AC11 /* NSString+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE19D11AC450710059AC11 /* NSString+STTwitter.m */; };
@@ -69,6 +71,10 @@
 
 /* Begin PBXFileReference section */
 		835807A11ABB3D0A00BCE11A /* URLSession Lab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "URLSession Lab.entitlements"; sourceTree = "<group>"; };
+		8377435A1AC6D99E006C372A /* USLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = USLButton.h; path = "Cell and Control Lab/USLButton.h"; sourceTree = "<group>"; };
+		8377435B1AC6D99E006C372A /* USLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = USLButton.m; path = "Cell and Control Lab/USLButton.m"; sourceTree = "<group>"; };
+		837743601AC6D9BE006C372A /* USLButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = USLButtonCell.h; path = "Cell and Control Lab/USLButtonCell.h"; sourceTree = "<group>"; };
+		837743611AC6D9BE006C372A /* USLButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = USLButtonCell.m; path = "Cell and Control Lab/USLButtonCell.m"; sourceTree = "<group>"; };
 		83AE19CC1AC450710059AC11 /* NSDateFormatter+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+STTwitter.h"; sourceTree = "<group>"; };
 		83AE19CD1AC450710059AC11 /* NSDateFormatter+STTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+STTwitter.m"; sourceTree = "<group>"; };
 		83AE19CE1AC450710059AC11 /* NSError+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+STTwitter.h"; sourceTree = "<group>"; };
@@ -157,6 +163,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		837743591AC6D980006C372A /* Cell and Control Lab */ = {
+			isa = PBXGroup;
+			children = (
+				8377435A1AC6D99E006C372A /* USLButton.h */,
+				8377435B1AC6D99E006C372A /* USLButton.m */,
+				837743601AC6D9BE006C372A /* USLButtonCell.h */,
+				837743611AC6D9BE006C372A /* USLButtonCell.m */,
+			);
+			name = "Cell and Control Lab";
+			sourceTree = "<group>";
+		};
 		83AE19CB1AC450710059AC11 /* STTwitter */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +223,7 @@
 		83C01DF41ABAAB4D00CADA46 = {
 			isa = PBXGroup;
 			children = (
+				837743591AC6D980006C372A /* Cell and Control Lab */,
 				83C01E121ABAAB4D00CADA46 /* USLAppDelegate.h */,
 				83C01E131ABAAB4D00CADA46 /* USLAppDelegate.m */,
 				83C01E151ABAAB4D00CADA46 /* USLMainMenu.xib */,
@@ -452,9 +470,11 @@
 				83C01E0D1ABAAB4D00CADA46 /* main.m in Sources */,
 				83AE19EC1AC450710059AC11 /* NSDateFormatter+STTwitter.m in Sources */,
 				83AE19F61AC450710059AC11 /* STTwitterParser.m in Sources */,
+				8377435C1AC6D99E006C372A /* USLButton.m in Sources */,
 				83C01E4F1ABB1EEC00CADA46 /* USLCacheTabController.m in Sources */,
 				83C01E141ABAAB4D00CADA46 /* USLAppDelegate.m in Sources */,
 				83AE19F81AC450710059AC11 /* JSONSyntaxHighlight.m in Sources */,
+				837743621AC6D9BE006C372A /* USLButtonCell.m in Sources */,
 				83AE19ED1AC450710059AC11 /* NSError+STTwitter.m in Sources */,
 				83AE19F21AC450710059AC11 /* STTwitterHTML.m in Sources */,
 				83C01E361ABAF4E300CADA46 /* USLMainWindowController.m in Sources */,
