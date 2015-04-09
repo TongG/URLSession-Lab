@@ -10,7 +10,6 @@
                 <outlet property="PINField" destination="Tel-k6-vXU" id="bO4-JT-MLx"/>
                 <outlet property="URLField" destination="opB-g5-Pba" id="wfb-3g-wlO"/>
                 <outlet property="accessTokenLabel" destination="uCX-b2-g04" id="LJ2-Wx-3ic"/>
-                <outlet property="customView" destination="fb7-Mk-COE" id="WN4-zV-hag"/>
                 <outlet property="goButton" destination="OI6-Ao-SA1" id="10e-fA-6gT"/>
                 <outlet property="outputTextView" destination="Spf-q5-Iaq" id="5mz-sy-dkc"/>
                 <outlet property="recipientField" destination="dF9-aZ-0Wt" id="AJ5-7i-qUj"/>
@@ -138,6 +137,26 @@
                                     <connections>
                                         <action selector="stopAction:" target="-2" id="ocA-32-1zm"/>
                                     </connections>
+                                </button>
+                            </subviews>
+                        </view>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </box>
+                    <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="KXh-sA-zvi">
+                        <rect key="frame" x="381" y="59" width="478" height="49"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view key="contentView">
+                            <rect key="frame" x="1" y="1" width="476" height="47"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QQk-vL-EK5">
+                                    <rect key="frame" x="13" y="12" width="68" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="roundTextured" title="Timeline" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t66-oX-TTq">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
                                 </button>
                             </subviews>
                         </view>
@@ -330,10 +349,6 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fb7-Mk-COE">
-                        <rect key="frame" x="384" y="12" width="163" height="96"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
                 </subviews>
             </view>
             <connections>

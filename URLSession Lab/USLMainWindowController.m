@@ -379,6 +379,11 @@
                                          errorBlock: ^( NSError* _Error ) { [ self presentError: _Error ]; } ];
     }
 
+- ( IBAction ) fetchTimeLineUsingSTTwitter: ( id )_Sender
+    {
+    
+    }
+
 - ( IBAction ) requestTokenAction: ( id )_Sender
     {
     NSURL* baseURL = [ NSURL URLWithString: @"https://api.twitter.com/oauth/request_token" ];
